@@ -1,6 +1,6 @@
 % 读取静态气动力数据库-低速通用
 
-function db = read_aerody_base(name)
+function db = read_aerody_database(name)
 
 disp('读取静态气动力数据库');
 disp(name);

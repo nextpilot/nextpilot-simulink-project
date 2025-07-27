@@ -57,3 +57,5 @@ tmp = [
 db.motor.lambda_rev = tmp(1, end:-1:1);
 db.motor.Ct_rev     = tmp(2, end:-1:1);
 db.motor.eta_rev    = tmp(3, end:-1:1);
+
+clear tmp

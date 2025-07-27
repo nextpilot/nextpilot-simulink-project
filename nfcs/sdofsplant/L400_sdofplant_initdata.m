@@ -7,6 +7,12 @@ init_engine;
 %% 质量数据库
 init_weight;
 
+%% 载荷数据库
+init_payload;
+
+%% 电池数据库
+init_battery;
+
 %% 初始状态
 db.init.vx_vy_vz=[0 0 0];
 db.init.p_q_r = [0 0 0];

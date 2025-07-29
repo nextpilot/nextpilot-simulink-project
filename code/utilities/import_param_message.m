@@ -12,9 +12,9 @@ function varargout = import_param_message(varargin)
 
 % 参数处理
 args = inputParser;
-addOptional(args, 'json_file','',@isstring);
-addOptional(args, 'save_target','base',@isstring);
-addOptional(args, 'csc_type','Simulink.Parameter', @isstring);
+addOptional(args, 'json_file','', @(x)ischar(x) || isstring(x));
+addOptional(args, 'save_target','base', @(x)ischar(x) || isstring(x));
+addOptional(args, 'csc_type','Simulink.Parameter', @(x)ischar(x) || isstring(x));
 parse(args, varargin{:})
 
 json_file = args.Results.json_file;

@@ -2,8 +2,8 @@ function import_mavlink_message(varargin)
 
 % 参数处理
 args = inputParser;
-addOptional(args, 'xml_file','', @isstring);
-addOptional(args, 'save_target','base',@isstring);
+addOptional(args, 'xml_file','', @(x)ischar(x) || isstring(x));
+addOptional(args, 'save_target','base', @(x)ischar(x) || isstring(x));
 parse(args, varargin{:})
 
 xml_file = args.Results.xml_file;

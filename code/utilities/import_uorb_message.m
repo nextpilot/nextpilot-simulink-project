@@ -16,8 +16,8 @@ function varargout = import_uorb_message(varargin)
 
 %% 参数处理
 args = inputParser;
-addOptional(args, 'uorb_files','');
-addOptional(args, 'save_target','base',@isstring);
+addOptional(args, 'uorb_files','', @(x)ischar(x) || isstring(x) || iscellstr(x));
+addOptional(args, 'save_target','base', @(x)ischar(x) || isstring(x));
 parse(args, varargin{:})
 
 msg_file_list = args.Results.uorb_files;
@@ -194,7 +194,7 @@ for i = 1:length(list)
         for j=1:length(fields)
             eobj(j)             = Simulink.BusElement;
             eobj(j).Name        = fields(j).name;
-            eobj(j).DataType    = getdatatype(fields(j).type);
+            eobj(j).DataType    = get_simulink_datatype(fields(j).type);
             eobj(j).Dimensions  = fields(j).dims;
             eobj(j).Description = fields(j).comment;
         end
@@ -239,7 +239,7 @@ for i = 1:length(list)
         for j=1:length(fields)
             eobj(j)=Simulink.BusElement;
             eobj(j).Name = fields(j).name;
-            eobj(j).DataType = getdatatype(fields(j).type);
+            eobj(j).DataType = get_simulink_datatype(fields(j).type);
             eobj(j).Dimensions = fields(j).dims;
             eobj(j).Description = fields(j).comment;
         end
@@ -266,7 +266,7 @@ for i = 1:length(list)
             appendEnumeral(nobj,consts(j).name,consts(j).value, consts(j).comment);
             % 保存为参数
             p.Value=[];
-            set(p,{'DataType','Value','Description'},{getdatatype(consts(j).type), consts(j).value, consts(j).comment});
+            set(p,{'DataType','Value','Description'},{get_simulink_datatype(consts(j).type), consts(j).value, consts(j).comment});
             assignin(sobj, upper(consts(j).name), p);
         end
         removeEnumeral(nobj,1)
@@ -277,3 +277,61 @@ end
 % 保存sldd文件
 saveChanges(dobj);
 close(dobj);
+
+function [mltype, mldims] = get_simulink_datatype(oldtype)
+
+if isnumeric(oldtype)
+    oldtype = class(oldtype);
+    mldims = size(oldtype);
+elseif ischar(oldtype)
+    tokens = regexp(oldtype, '(\w+)(\[\d+\])*', 'tokens', 'once');
+    oldtype = lower(tokens{1});
+    if isempty(tokens{2})
+        mldims = 1;
+    else
+        mldims = eval(tokens{2});
+    end
+else
+    error('get_simulink_datatype:WrongInputDataType', 'Can''t Recognize DataType: %s', class(oldtype));
+end
+
+switch lower(oldtype)
+    case {'double', 'float64'}
+        mltype = 'double';
+    case {'single', 'float', 'float32'}
+        mltype = 'single';
+    case {'uint64', 'unsigned long long'}
+        mltype = 'uint64';
+    case {'uint32', 'unsigned long', 'ulong'}
+        mltype = 'uint32';
+    case {'uint16', 'unsigned short', 'ushort'}
+        mltype = 'uint16';
+    case {'uint8', 'unsigned char', 'uchar'}
+        mltype = 'uint8';
+    case {'int64', 'long long'}
+        mltype = 'int64';
+    case {'int32', 'long'}
+        mltype = 'int32';
+    case {'int16', 'short'}
+        mltype = 'int16';
+    case {'int8', 'char'}
+        mltype = 'int8';
+    case {'uint'}
+        mltype = 'uint32';
+    case {'int'}
+        mltype = 'int32';
+    case {'bool', 'boolean', 'logcial'}
+        mltype = 'boolean';
+    otherwise
+        mltype = oldtype;
+end
+
+function under = camel2under(camel)
+% camel2under 驼峰命名转下划线命名, 小写和大写紧挨一起的地方, 加上分隔符, 然后全部转小写
+%
+% Example:
+%
+% 'abcDefGh' ==> 'abc_def_gh'
+
+under = lower(regexprep(camel, '([0-9a-z])([A-Z])', '$1_$2'));
+

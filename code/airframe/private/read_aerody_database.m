@@ -2,8 +2,8 @@
 
 function db = read_aerody_database(name)
 
-disp('读取静态气动力数据库');
-disp(name);
+% disp('读取静态气动力数据库');
+% disp(name);
 fid = fopen(name,'rt');
 
 %%%%%%%%%%    读取vector    %%%%%%%%%%%%%%%
@@ -95,7 +95,7 @@ while feof(fid) == 0
     end
 end
 
-disp('Done!');
+% disp('Done!');
 fclose(fid);
 
 end

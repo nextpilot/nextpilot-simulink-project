@@ -22,5 +22,5 @@ db.aerody.Bref = 11.5;
 % 参考长度
 db.aerody.Lref = [db.aerody.Bref,db.aerody.Cref, db.aerody.Bref];
 
-% 构型坐标系，后右上为正，机体坐标系是前右下为正
-db.aerody.COP = [2.308,0,-0.065].*[-1,1,-1];
+% 构型坐标系，后右上为正
+db.aerody.COP = [2.308,0,-0.065];

@@ -1,5 +1,6 @@
 disp('load fw_att_control params')
 
+FW_R_TC=0.4;
 FW_P_TC=0.4;
 FW_PR_P=0.08;
 FW_PR_I=0.1;

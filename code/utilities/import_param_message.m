@@ -72,7 +72,7 @@ sobj = getSection(dobj,'Design Data');
 for i = 1:length(param.parameters)
     meta = param.parameters{i};
     value = create_single_param(csc, meta);
-    assignin(sobj, name, value);
+    assignin(sobj, genvarname(meta.name), value);
 end
 
 % 保存字典
@@ -82,11 +82,19 @@ close(dobj);
 
 function obj = create_single_param(csc, meta)
 type = get_simulink_datatype(meta.type);
-value = cast(meta.default, type);
 
 if strcmpi(csc, 'auto')
-    obj = value;
+    obj = cast(meta.default, type);
 else
+    % 必要的时候将int32转uint32
+    if strcmpi(type, 'int32')
+        if meta.default > intmax('int32') || (isfield(meta,'max') && meta.max > intmax('int32'))
+            type = 'uint32';
+        end
+    end
+
+    value = cast(meta.default, type);
+    
     obj = feval(csc, value);
     obj.DataType = type;
     if isfield(meta, 'min')

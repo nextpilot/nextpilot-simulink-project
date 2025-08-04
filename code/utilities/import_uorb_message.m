@@ -81,7 +81,7 @@ name = camel2under(name);
 
 info.file = file;
 info.name = name;
-info.topics = {name};
+info.topics = {};
 info.fields = [];
 info.consts = [];
 
@@ -92,7 +92,7 @@ while ~feof(fid)
     if isempty(tline)
         continue
     elseif startsWith(tline, '# TOPICS')
-        info.topics = strsplit(strtrim(strrep(tline, '# TOPICS','')));
+        info.topics = [info.topics, strsplit(strtrim(strrep(tline, '# TOPICS','')))];
         continue;
     elseif startsWith(tline ,'#')
         continue;
@@ -124,6 +124,10 @@ while ~feof(fid)
     end
 end
 fclose(fid);
+
+if isempty(info.topics)
+    info.topics = {name};
+end
 
 
 function info = read_uorb_from_header(file)

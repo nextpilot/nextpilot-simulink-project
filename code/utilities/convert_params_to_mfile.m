@@ -1,8 +1,5 @@
 function convert_params_to_mfile(varargin)
 
-% cfile = 'D:\nextpilot\PX4-Autopilot-v1.13.2\src\modules\fw_pos_control_l1\fw_pos_control_l1_params.c';
-
-
 if nargin == 0
     [filename, pathname] = uigetfile({'*.c', 'Param Define Files (*.c)'},'Param Define Files');
     if isequal(pathname, 0)

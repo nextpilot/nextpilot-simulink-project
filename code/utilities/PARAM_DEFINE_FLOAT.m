@@ -14,4 +14,4 @@ function PARAM_DEFINE_FLOAT(name, value)
 % 
 % assignin(sobj, name, value);
 
-assignin('caller', name, value);
+assignin('caller', name, single(value));

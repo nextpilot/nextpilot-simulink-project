@@ -1,3 +1,5 @@
+function L400_project_startup()
+
 rootpath = slproject.getCurrentProject().RootFolder;
 
 % 读取机架数据

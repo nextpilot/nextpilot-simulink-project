@@ -1,4 +1,4 @@
-function varargout = import_param_message(varargin)
+function varargout = import_param_from_json(varargin)
 % ssld/base/mat文件支持的数据类型dtype有variable, mpt等
 % import_param_from_json(json_file, save_target='base', csc_type='Simulink.Paramter')
 % 

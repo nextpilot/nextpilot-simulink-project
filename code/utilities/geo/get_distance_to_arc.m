@@ -1,0 +1,1 @@
+function get_distance_to_arc()

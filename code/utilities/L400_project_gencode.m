@@ -1,4 +1,4 @@
-function generate_flight_code
+function L400_project_gencode
 
 model = 'flightControlSystem';
 

@@ -1,4 +1,4 @@
-function results = run_project_tests()
+function results = L400_project_runtests()
 
 prj = slproject.getCurrentProject;
 lst = {};

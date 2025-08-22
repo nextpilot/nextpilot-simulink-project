@@ -1,4 +1,4 @@
-function q = euler2quat(phi,theta,psi)
+function q = eul2quat(phi,theta,psi)
 
 cosPhi_2 = cos(phi/2);
 cosTheta_2 = cos(theta/2);

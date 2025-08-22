@@ -1,4 +1,4 @@
-function [psi, theta, phi] = dcm2eul(R)
+function [phi, theta, psi] = dcm2eul(R)
 
 theta = single(asin(-R(3,1)));
 

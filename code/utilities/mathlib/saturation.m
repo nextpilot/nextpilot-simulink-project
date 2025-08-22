@@ -1,5 +1,4 @@
-function y = saturation(x, lu, ub)
-
+function y = saturation(x, lb, ub)
 if x < lb
     y = lb;
 elseif x > ub

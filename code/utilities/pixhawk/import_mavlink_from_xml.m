@@ -1,4 +1,4 @@
-function import_mavlink_message(varargin)
+function import_mavlink_from_xml(varargin)
 
 % 参数处理
 args = inputParser;

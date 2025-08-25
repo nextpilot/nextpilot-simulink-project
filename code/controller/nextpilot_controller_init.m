@@ -9,6 +9,6 @@ import_param_from_mfile(fullfile(newpath, '**/*_params.m'), 'nextpilot_datadict.
 
 
 %% 导入用户自定义的主题
-import_uorb_message(fullfile(newpath, '**/*.msg'), 'nextpilot_datadict.sldd')
+import_uorb_from_msg(fullfile(newpath, '**/*.msg'), 'nextpilot_datadict.sldd')
 
 cd(oldpath);

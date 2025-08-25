@@ -1,4 +1,4 @@
-function varargout = import_uorb_message(varargin)
+function varargout = import_uorb_from_msg(varargin)
 % import_uorb_message(uorb_files, save_target)
 %
 % uorb_files:  uorb消息文件，支持cellstr，char，string，string array等，字符串中可以有通配符

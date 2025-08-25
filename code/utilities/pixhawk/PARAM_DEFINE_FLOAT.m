@@ -3,7 +3,7 @@ function PARAM_DEFINE_FLOAT(name, value)
 % persistent sobj
 % 
 % if isempty(sobj)
-%     file = 'L400_datadict.sldd';
+%     file = 'nextpilot_datadict.sldd';
 %     if exist(file,'file')
 %         dobj=Simulink.data.dictionary.open(file);
 %     else

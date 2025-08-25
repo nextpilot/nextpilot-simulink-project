@@ -11,7 +11,7 @@ mod_sub_pub=struct;
 for i=1:length(modules)
     cd([px4root,'\src\modules\',modules{i}])
     sub={};pub={};
-    [flg,txt] = dos(['dir /b/s *.c *.cpp']);
+    [flg,txt] = dos('dir /b/s *.c *.cpp');
     if flg ~= 0
         continue
     end
@@ -77,7 +77,7 @@ root.append(p);
 header={'模块','订阅','发布'};
 field=fieldnames(mod_sub_pub);
 body={};
-rf=sprintf('\n');
+rf=newline;
 for i=1:length(field)
     try
         sub=mod_sub_pub.(field{i}).sub;
@@ -114,7 +114,7 @@ root.append(p);
 header={'主题','订阅','发布'};
 field=fieldnames(msg_sub_pub);
 body={};
-rf=sprintf('\n');
+rf=newline;
 for i=1:length(field)
     try
         sub=msg_sub_pub.(field{i}).sub;

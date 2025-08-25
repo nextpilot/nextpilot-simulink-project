@@ -1,4 +1,4 @@
-
+function mass = init_weight()
 % 参考重心
 mass.ref_center = [0 0 0.05];
 
@@ -7,7 +7,8 @@ mass.empty_weight = 38;
 
 % 质量惯性矩
 % 天晴[6.542 12.742 7.105]
-%% 短机翼
+
+% 短机翼
 % mass.emtpy_inertia = [
 % 10.122 0.0023  0.727
 % 0.0023  10.215  0.0033

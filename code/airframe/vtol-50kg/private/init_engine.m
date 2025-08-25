@@ -1,4 +1,6 @@
-%% 发动机
+function engine = init_engine()
+
+
 % 发动机安装位置
 engine.setup_position  = [0,0,0];
 % 发动机安装角（ZYX顺序），psi=0，theta=1，phi=0
@@ -57,4 +59,3 @@ engine.torque.power = eng_perf2(:,2);
 engine.torque.moment = eng_perf2(:,3);
 engine.torque.rpm = eng_perf2(:,4);
 engine.torque.fuel_cons_rate = eng_perf2(:,5);
-clear eng_perf1 eng_perf2

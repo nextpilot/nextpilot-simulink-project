@@ -1,23 +1,24 @@
+function motor = init_motor()
 
-
-%% 旋翼动力
 L_x = 0.7*2;%旋翼轴向距离
 L_y = 0.74*2;% 旋翼侧向距离
 
 
 % 电机安装位置
 motor.setup_position = [
-     L_x  L_y 0    % 左前
-     L_x -L_y 0  % 右前
+    L_x  L_y 0    % 左前
+    L_x -L_y 0  % 右前
     -L_x -L_y 0
     -L_x  L_y 0];
+
 % 电机安装角度(ZYX)
 motor.setup_angle =[
-   0 0 -5
-   0 0 -5
-   0 0 5
-   0 0 5
-]*pi/180;
+    0 0 -5
+    0 0 -5
+    0 0 5
+    0 0 5
+    ]*pi/180;
+
 % 电机旋转方向，拉力轴向右手定则（俯视，逆时针为正，顺时针为负）
 motor.rotation = [
     +1  % 顺时针
@@ -25,6 +26,7 @@ motor.rotation = [
     -1
     +1
     ];
+
 mc_perf = [
     % 油门	电调温度	拉力（kg）	转速(rpm)	电压（V）	供电电流（A）	扭矩（N·M）
     0       0    0       0       0      0       0
@@ -46,14 +48,15 @@ mc_perf = [
     95/100	33	28.27	4665.5	54.81	123.4	11.03
     100/100	33	27.74	4645.8	54.86	121.1	10.83
     ];
+
 % 拉力曲线
 motor.thrust.delta = mc_perf(:,1);
 motor.thrust.force = mc_perf(:,3)*9.8;
 motor.torque.rpm = mc_perf(:,4);
+
 % 扭矩曲线
 motor.torque.delta  = mc_perf(:,1);
 motor.torque.moment = mc_perf(:,7);
 motor.torque.voltage = mc_perf(:,5);
 motor.torque.electricity = mc_perf(:,6);
 
-clear A R mc_perf L_x L_y

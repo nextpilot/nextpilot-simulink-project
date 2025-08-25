@@ -8,15 +8,14 @@ plant.init.phi_theta_psi = [0 0 0];
 plant.init.p_q_r         = [0 0 0];
 
 %% 发动机
-init_engine;
-
+engine = init_engine;
 
 %% 旋翼动力
-init_motor;
+motor = init_motor;
 
 %% 气动数据
-init_aerody;
+aerody = init_aerody;
 
 %% 质量数据
-init_weight;
+mass = init_weight;
 

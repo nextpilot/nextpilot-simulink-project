@@ -19,3 +19,6 @@ aerody = init_aerody;
 %% 质量数据
 mass = init_weight;
 
+%% 载荷数据
+payload = init_payload;
+

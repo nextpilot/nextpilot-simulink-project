@@ -4,6 +4,7 @@ mass.ref_center = [0 0 0.05];
 
 % 空机重量kg
 mass.empty_weight = 38;
+mass.empty_cog  = [0 0 0.05];
 
 % 质量惯性矩
 % 天晴[6.542 12.742 7.105]

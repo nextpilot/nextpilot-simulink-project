@@ -1,19 +1,19 @@
 % 参考重心，构型系
-db.mass.COGref = [2.308,0,-0.065];
+db.mass.ref_cog = [2.308,0,-0.065];
 
 % 空机重量kg
-db.mass.Wempty = 435;
+db.mass.empty_weight = 435;
 
 % 空机重心，构型系
-db.mass.COGempty = [2.308,0,-0.065];
+db.mass.empty_cog = [2.308,0,-0.065];
 
 % 空机转动惯量（参考重心），对称矩阵，除了对角线都有负号
-db.mass.Ifull = [
+db.mass.full_inertia = [
     947.46     -0     -(-78.628)
     -0      1247.13   -0
     -(-78.628)   -0    1994.49
     ];
-db.mass.Iempty = [
+db.mass.empty_inertia = [
     923.60     -0     -(-78.628)
     -0      1153.78   -0
     -(-78.628)   -0    1899.36

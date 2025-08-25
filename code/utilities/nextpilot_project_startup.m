@@ -1,4 +1,4 @@
-function L400_project_startup()
+function nextpilot_project_startup()
 
 rootpath = slproject.getCurrentProject().RootFolder;
 

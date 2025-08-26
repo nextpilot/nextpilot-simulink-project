@@ -14,7 +14,7 @@ engine.propeller_dia = 22;
 % 桨叶数目
 engine.blade_count = 2;
 
-engine.init_fuel = 9; %初始燃油重量
+engine.init_fuel = 7; %初始燃油重量
 
 % 发动机拉力曲线
 eng_perf1 = [

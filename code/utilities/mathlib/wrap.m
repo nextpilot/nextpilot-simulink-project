@@ -9,7 +9,7 @@ function [new_angle] = wrap(x, low, high)
 range = high - low;
 
 if (x < low)
-x = x + range * (floor((low - x) / range) + 1.0);
+    x = x + range * (floor((low - x) / range) + 1.0);
 end
 
 new_angle = low + mod((x - low), range);

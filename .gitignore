@@ -26,3 +26,6 @@ codegen
 
 # Simulink cache files
 *.slxc
+
+# Word cache files
+~$*

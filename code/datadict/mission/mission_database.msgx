@@ -1,0 +1,7 @@
+mission stats
+mission_route_record  offboard1
+mission_route_record  offboard2
+mission_route_record  onboard
+
+mission_safe_record  safe
+mission_fence_record fence

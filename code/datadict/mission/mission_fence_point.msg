@@ -1,0 +1,16 @@
+uint8 frame
+
+uint16 FENCE_TYPE_RETURN_POINT=5000
+uint16 FENCE_TYPE_POLYGON_VERTEX_INCLUSION=5001
+uint16 FENCE_TYPE_POLYGON_VERTEX_EXCLUSION=5002
+uint16 FENCE_TYPE_CIRCLE_INCLUSION=5003
+uint16 FENCE_TYPE_CIRCLE_EXCLUSION=5004
+
+uint8 type
+uint16 vertex_count
+float circle_radius
+double lat
+double lon
+float alt
+
+

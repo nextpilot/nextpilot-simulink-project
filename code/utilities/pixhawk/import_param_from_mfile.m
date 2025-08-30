@@ -36,7 +36,7 @@ info.vars = [];
 oldvar = who;
 run(mfile);
 newvar = who;
-addvar = setdiff(oldvar, newvar);
+addvar = setdiff(newvar, oldvar);
 
 for i = 1 : length(addvar)
     info.vars(end+1).name = addvar{i};

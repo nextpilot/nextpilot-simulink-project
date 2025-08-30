@@ -177,10 +177,10 @@ while ~feof(fid)
     end
     % static constexpr uint8_t MAIN_STATE_MANUAL = 0;
     tokens = regexpi(tline, 'static constexpr (.+) ([\d\w_]+) \= ([\-\d])+;','tokens','once');
-   info.consts(end+1).name=tokens{2};
-   info.consts(end).type=tokens{1};
-   info.consts(end).value=tokens{3};
-   info.consts(end).comment='';
+    info.consts(end+1).name=tokens{2};
+    info.consts(end).type=tokens{1};
+    info.consts(end).value=tokens{3};
+    info.consts(end).comment='';
 end
 % 关闭文件
 fclose(fid);
@@ -232,7 +232,7 @@ sobj = getSection(dobj,'Design Data');
 
 % 定义总线类型
 for i = 1:length(list)
-   
+
     % 结构体
     fields = list{i}.fields;
     topics = list{i}.topics;
@@ -267,14 +267,14 @@ for i = 1:length(list)
         nobj.AddClassNameToEnumNames = true;
         for j=1:length(consts)
             % 增加枚举项
-            appendEnumeral(nobj,consts(j).name,consts(j).value, consts(j).comment);
+            appendEnumeral(nobj, consts(j).name, consts(j).value, consts(j).comment);
             % 保存为参数
             p.Value=[];
-            set(p,{'DataType','Value','Description'},{get_simulink_datatype(consts(j).type), consts(j).value, consts(j).comment});
+            set(p,{'DataType', 'Value', 'Description'}, {get_simulink_datatype(consts(j).type), consts(j).value, consts(j).comment});
             assignin(sobj, upper(consts(j).name), p);
         end
-        removeEnumeral(nobj,1)
-        assignin(sobj,name,nobj);
+        removeEnumeral(nobj, 1)
+        assignin(sobj, name, nobj);
     end
 end
 
@@ -300,9 +300,9 @@ else
 end
 
 switch lower(oldtype)
-    case {'double', 'float64'}
+    case {'double', 'float64', 'real64'}
         mltype = 'double';
-    case {'single', 'float', 'float32'}
+    case {'single', 'float', 'float32', 'real32'}
         mltype = 'single';
     case {'uint64', 'unsigned long long'}
         mltype = 'uint64';
@@ -327,7 +327,7 @@ switch lower(oldtype)
     case {'bool', 'boolean', 'logcial'}
         mltype = 'boolean';
     otherwise
-        mltype = oldtype;
+        mltype = [oldtype,'_s'];
 end
 
 function under = camel2under(camel)

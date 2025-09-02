@@ -63,7 +63,7 @@ db.payload.mass = [0,15,80,185,315,450];
 [itheta, imass] = meshgrid(db.payload.theta, db.payload.mass);
 for i = 1 : 3
     F = scatteredInterpolant (tmp(:,1),tmp(:,2), tmp(:,i+2));
-    db.payload.cog(:,:,i) = F(itheta, imass);
+    db.payload.cog(:,:,i) = F(itheta, imass) / 1000; % 单位转为m
 end
 for i = 1 : 6
     F = scatteredInterpolant (tmp(:,1),tmp(:,2), tmp(:,i+5));

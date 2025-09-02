@@ -1,0 +1,13 @@
+uint64 timestamp
+uint64 timestamp_sample
+uint32 device_id
+uint32  error_count
+float temperature
+float va
+float alpha
+float beta
+float qbar
+float pt
+float ps
+float rho
+float asl

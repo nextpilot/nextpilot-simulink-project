@@ -1,0 +1,21 @@
+
+
+
+[[parameters]]
+name = "NAV_ACC_RAD3"
+value = 1256
+group = "fw_att_control"
+type = "float"
+min=2
+max =1
+increment = 556
+
+
+[[parameters]]
+name = "NAV_ACC_RAD"
+value = 1256
+group = "fw_att_control"
+type = "float"
+min=2
+max =1
+increment = 556

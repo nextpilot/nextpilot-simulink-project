@@ -15,7 +15,9 @@ function PARAM_DEFINE_INT32(name, value)
 % assignin(sobj, name, value);
 
 if value > intmax('int32')
-    assignin('caller', name, uint32(value));
+    param = Simulink.Parameter(uint32(value));
 else
-    assignin('caller', name, int32(value));
+    param = Simulink.Parameter(int32(value));
 end
+
+assignin('caller', name, param);

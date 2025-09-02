@@ -14,4 +14,8 @@ function PARAM_DEFINE_FLOAT(name, value)
 % 
 % assignin(sobj, name, value);
 
-assignin('caller', name, single(value));
+param = Simulink.Parameter(single(value));
+param.CoderInfo.StorageClass = 'Custom';
+param.CoderInfo.CustomStorageClass = 'Const';
+
+assignin('caller', name, param);

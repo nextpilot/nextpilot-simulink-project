@@ -15,35 +15,7 @@ import_mavlink_from_xml('mavlink/v1.0/common.xml', sldd);
 
 % 导入param参数
 import_param_from_json('param/parameters-v1.12.3.json', sldd);
-
-%% 导入const常数
-oldvar = who;
-nextpilot_define_constant;
-newvar = who;
-addvar = setdiff(newvar, [oldvar;'oldvar']);
-
-% 打开sldd文件
-if exist(sldd, 'file')
-    dobj = Simulink.data.dictionary.open(sldd);
-else
-    dobj = Simulink.data.dictionary.create(sldd);
-end
-sobj = getSection(dobj,'Design Data');
-
-p = Simulink.Parameter();
-p.CoderInfo.StorageClass = 'Custom';
-p.CoderInfo.CustomStorageClass = 'Const';
-for i = 1 : length(addvar)
-    name = addvar{i};
-    value = eval(name);
-    p.DataType = 'auto';
-    p.Value = value;
-    p.DataType = class(value);
-    assignin(sobj, name, p);
-end
-% 保存字典
-saveChanges(dobj);
-close(dobj);
+import_param_from_mfile('nextpilot_define_constant.m', sldd);
 
 
 cd(oldpath);

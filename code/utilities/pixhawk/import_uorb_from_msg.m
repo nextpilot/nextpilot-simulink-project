@@ -46,7 +46,7 @@ for i = 1:length(msg_file_list)
     for j = 1:length(msg_dir_list)
         idx = idx + 1;
         file = fullfile(msg_dir_list(j).folder,msg_dir_list(j).name);
-        fprintf('[%d]%s\n',idx, file);
+        % fprintf('[%d]%s\n',idx, file);
 
         [~,~,exts] = fileparts(file);
         % elem = [name, type, size, desc]
@@ -232,6 +232,7 @@ sobj = getSection(dobj,'Design Data');
 
 % 定义总线类型
 for i = 1:length(list)
+    fprintf(1, '[%d/%d]%s\n', i, length(list), list{i}.file);
 
     % 结构体
     fields = list{i}.fields;
@@ -250,7 +251,17 @@ for i = 1:length(list)
         bobj.Elements = eobj;
 
         for k =1:length(topics)
-            assignin(sobj,[topics{k},'_s'],bobj);
+            assignin(sobj, [topics{k},'_s'], bobj);
+        end
+
+        % 结构体初始值
+        try
+            init_value = Simulink.Bus.createMATLABStruct([topics{1},'_s'], [], 1, dobj);
+            init_param = Simulink.Parameter();
+            init_param.Value = init_value;
+            init_param.DataType = ['Bus: ', topics{1}, '_s'];
+            assignin(sobj, upper([topics{1}, '_init']), init_param);
+        catch
         end
     end
 
@@ -327,7 +338,7 @@ switch lower(oldtype)
     case {'bool', 'boolean', 'logcial'}
         mltype = 'boolean';
     otherwise
-        mltype = [oldtype,'_s'];
+        mltype = ['Bus: ', oldtype,'_s'];
 end
 
 function under = camel2under(camel)

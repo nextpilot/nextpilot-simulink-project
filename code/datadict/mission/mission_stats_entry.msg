@@ -1,3 +1,3 @@
 uint64 timestamp
-uint16_t item_count
-uint16_t update_count
+uint16 item_count
+uint16 update_count

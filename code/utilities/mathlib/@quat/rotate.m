@@ -6,4 +6,4 @@ q = normalize(q);
 % 矢量坐标旋转
 r = conj(q) * va * q;
 % 提取虚部
-vb = reshape(imag(r), size(va));
+vb = reshape(r.imag(), size(va));

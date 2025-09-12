@@ -1,4 +1,4 @@
 function r = power(q, w)
-r = exp(w*log(q));
+% 计算q^t = exp(w*log(q))
 
-% quatpower(col(q))
+r = exp(w*log(q));

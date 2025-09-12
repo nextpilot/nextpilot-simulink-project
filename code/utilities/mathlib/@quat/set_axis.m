@@ -1,10 +1,6 @@
-function q=setaxis(q,varargin)
+function q = set_axis(q,varargin)
 
-% setaxis([beta1,beta2,beta3,sigma])
-% setaxis([beta1,beta2,beta3]*sigma)
-% setaxis([beta1,beta2,beta3],sigma)
-% setaxis(beta1,beta2,beta3)
-% setaxis(beta1,beta2,beta3,sigma)
+
 
 
 % 绕着轴 n = [cosβ1,cosβ2,cosβ3] 旋转角度 σ，则构成四元素

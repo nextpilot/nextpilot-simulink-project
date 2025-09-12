@@ -5,14 +5,16 @@ function r = mtimes(p, q)
 % p = quat(p);
 % q = quat(q);
 
-p0 = real(p); pv = imag(p);
-if isa(q, 'quat')
-    q0 = real(q); qv = imag(q);
-elseif length(q) == 3
-    q0 = 0; qv = q;
-elseif length(q) == 4
-    q0 = q(1); qv = q(2:4);
+if ~isa(p, 'quat')
+    p = quat(p);
 end
+
+if ~isa(q, 'quat')
+    q = quat(q);
+end
+
+p0 = real(p); pv = imag(p);
+q0 = real(q); qv = imag(q);
 
 pv = pv(:);
 qv = qv(:);
@@ -20,6 +22,4 @@ qv = qv(:);
 r0 = p0*q0 - dot(pv, qv);
 rv = p0*qv + q0*pv + cross(pv, qv);
 
-r = quat();
-r.real = r0;
-r.imag = rv;
+r = quat([r0; rv]);

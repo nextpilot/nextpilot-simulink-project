@@ -1,7 +1,6 @@
 function l = log(q)
 
-[qv,sigma]=getaxisangle(q);
+absq = sqrt(dot(q.data, q.data));
+absv = sqrt(dot(q.imag, q.imag));
 
-l = [0 qv * sigma/2];
-
-%quatlog(col(q))
+l = quat([log(absq); q.imag / absv * acos(q.real/absq)]);

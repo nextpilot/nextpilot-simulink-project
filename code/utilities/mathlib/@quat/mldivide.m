@@ -1,9 +1,11 @@
-function r=mldivide(p,q)
+function r=mldivide(p, q)
 % r=p\q
-% r=p*q=mat(p)*col(q)  ==> q=p\r=mat(p)\col(r)
-% r=p*q=mati(q)*col(r)  ==> p=p/q=mati(q)\col(r)
 
-p = quat(p);
-q = quat(q);
+if ~isa(p, 'quat')
+    p = quat(p);
+end
+if ~isa(q, 'quat')
+    q = quat(q);
+end
 
-r = inv(p)*q;
+r = p.inv()*q;

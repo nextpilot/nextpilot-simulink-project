@@ -1,4 +1,4 @@
-function Rbe = ground2body(phi, theta, psi)
+function Rbe = dcm_g2b(phi, theta, psi)
 % 从地面坐标系到机体坐标系的旋转过程
 % (1)绕z轴旋转psi
 % (2)绕y轴旋转theta

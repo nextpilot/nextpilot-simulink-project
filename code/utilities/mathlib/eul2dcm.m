@@ -1,4 +1,6 @@
 function dcm = eul2dcm(phi,theta,psi)
+% 从机体到地面
+
 dcm = zeros(3,3);
 
 cosPhi = cos(phi);

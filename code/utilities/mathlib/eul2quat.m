@@ -1,4 +1,5 @@
 function q = eul2quat(phi,theta,psi)
+% 从地面到机体四元数
 
 cosPhi_2 = cos(phi/2);
 cosTheta_2 = cos(theta/2);

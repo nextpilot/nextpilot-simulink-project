@@ -22,7 +22,8 @@ function r = ang2dcm(varargin)
 if nargin < 2
     error('ang2dcm:inputerror', '至少包含两个输入参数！');
 else
-    ang = cell2vector(varargin(1:end-1));
+    tmp = cellfun(@(x)x(:), varargin(1:end-1), 'UniformOutput', false);
+    ang = cat(1, tmp{:});
     act = varargin{end};
 end
 

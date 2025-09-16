@@ -1,4 +1,4 @@
-function y = IsFinite555(u, param)
+function y = IsFinite(u, param)
 
 if isfinite(u)
     y = single(u);

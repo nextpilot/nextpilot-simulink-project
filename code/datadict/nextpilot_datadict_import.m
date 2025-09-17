@@ -1,4 +1,4 @@
-function nextpilot_import_datadict()
+function nextpilot_datadict_import()
 
 oldpath = pwd;
 newpath = fileparts(mfilename("fullpath") + ".m");
@@ -15,7 +15,7 @@ import_mavlink_from_xml('mavlink/v1.0/common.xml', sldd);
 
 % 导入param参数
 import_param_from_json('param/parameters-v1.12.3.json', sldd);
-import_param_from_mfile('nextpilot_define_constant.m', sldd);
+import_param_from_mfile('constant/getlib_constant.m', sldd);
 
 
 cd(oldpath);

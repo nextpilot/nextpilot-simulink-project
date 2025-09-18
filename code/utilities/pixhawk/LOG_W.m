@@ -1,3 +1,3 @@
-function LOG_W(fmt, varargin)
+function LOG_W(formatspec, varargin)
 
 

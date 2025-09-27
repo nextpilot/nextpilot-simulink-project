@@ -1,9 +1,7 @@
-function reload(varargin)
+function reload(model)
 
-if nargin == 0
-    model = bdroot;
-else
-    model = varargin{1};
+arguments
+    model (1,:) char {mustBeTextScalar} = bdroot
 end
 
 if isempty(model)

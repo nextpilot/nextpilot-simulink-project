@@ -1,14 +1,7 @@
-function import(varargin)
-
-if nargin == 0
-    model = bdroot;
-    dfile = '';
-elseif nargin == 1
-    model = varargin{1};
-    dfile = '';
-else
-    model = varargin{1};
-    dfile = varargin{2};
+function import(model, dfile)
+arguments
+    model (1,:) char {mustBeTextScalar} = bdroot
+    dfile (1,:) char {mustBeTextScalar} = [model, '_model_workspace.mat']
 end
 
 if isempty(model)
@@ -47,14 +40,14 @@ if ~isempty(dfile)
     else
     end
 else
-    matfile =  [fileparts(which(model)), '_modle_workspace.mat'];
+    matfile =  [fileparts(which(model)), '_model_workspace.mat'];
     if exist(matfile, 'file')
         hws.DataSource =  'MAT-File';
         hws.FileName = matfile;
         hws.reload();
     end
 
-    mfile = [fileparts(which(model)), '_modle_workspace.m'];
+    mfile = [fileparts(which(model)), '_model_workspace.m'];
     if exist(mfile, 'file')
         hws.DataSource =  'MATLAB File';
         hws.FileName = mfile;

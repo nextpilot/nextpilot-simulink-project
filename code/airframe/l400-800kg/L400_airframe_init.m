@@ -1,25 +1,40 @@
+function L400_airframe_init()
+
+oldpath = pwd;
+cd(fileparts(mfilename('fullpath')));
 
 %% 气动数据库
-init_aerody;
+[db.aerody, db.dds, db.hingle] = init_aerody;
 
 %% 推力数据库
-init_engine;
+db.motor = init_engine;
 
 %% 质量数据库
-init_weight;
+db.mass = init_weight;
 
 %% 载荷数据库
-init_payload;
+db.payload = init_payload;
 
 %% 电池数据库
-init_battery;
+db.battery = init_battery;
 
 %% 起落架数据
-init_landgear;
+db.landgear = init_landgear;
 
 %% 初始状态
-db.init.vx_vy_vz=[0 0 0];
-db.init.p_q_r = [0 0 0];
-db.init.phi_theta_psi = [0 0 0];
-db.init.lat_lon_alt = [30 120 0];
+% 初始速度，体轴系，单位m/s
+init.u_v_w=[0 0 0];
+% 初始角速率，体轴系，单位rad/s
+init.p_q_r = [0 0 0];
+% 初始姿态角，但是rad
+init.phi_theta_psi = [0 0 0];
+% 初始经纬高，单位deg，m
+init.lat_lon_alt = [30 120 0];
 
+%% 物理环境
+environ.wind.const_wind = [0 0 0];
+environ.terrain.hground = 0;
+
+save L400_airframe_data.mat db init environ
+
+cd(oldpath);

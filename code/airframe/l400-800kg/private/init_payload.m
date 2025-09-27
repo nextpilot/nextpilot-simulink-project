@@ -1,8 +1,9 @@
+function payload = init_payload()
 % 农药重量kg
-db.payload.init_mass = 450;
+payload.init_mass = 450;
 
 % 喷洒速度kg/s
-db.payload.spray_speed = 0;
+payload.spray_speed = 0;
 
 
 
@@ -55,19 +56,17 @@ tmp = [
 % 由于提供的原始数据没有网格化，因此采用scatteredInterpolant函数对所有数据进行网格化处理
 
 % 俯仰角
-db.payload.theta = [-5,0,5,10,15];
+payload.theta = [-5,0,5,10,15];
 % 质量
-db.payload.mass = [0,15,80,185,315,450];
+payload.mass = [0,15,80,185,315,450];
 
 % 构建网格化插值表
-[itheta, imass] = meshgrid(db.payload.theta, db.payload.mass);
+[itheta, imass] = meshgrid(payload.theta, payload.mass);
 for i = 1 : 3
     F = scatteredInterpolant (tmp(:,1),tmp(:,2), tmp(:,i+2));
-    db.payload.cog(:,:,i) = F(itheta, imass) / 1000; % 单位转为m
+    payload.cog(:,:,i) = F(itheta, imass) / 1000; % 单位转为m
 end
 for i = 1 : 6
     F = scatteredInterpolant (tmp(:,1),tmp(:,2), tmp(:,i+5));
-    db.payload.inertia(:,:,i) = F(itheta, imass);
+    payload.inertia(:,:,i) = F(itheta, imass);
 end
-
-clear tmp F

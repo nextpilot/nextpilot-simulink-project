@@ -1,3 +1,4 @@
+function motor = init_engine()
 % 内侧：STA 1500，BL±1153，WL40
 % 外侧：STA 1560，BL±2400，WL60
 % 短舱下倾角：6°
@@ -7,13 +8,13 @@
 
 
 % 螺旋桨直径1.016 m
-db.motor.D = 1.016;
+motor.D = 1.016;
 
 % 转动惯量：0.043kg·m^2
-db.motor.I = 0.043;
+motor.I = 0.043;
 
 % 电机安装位置（后右上），构型系
-db.motor.setup_position = [
+motor.setup_position = [
     1560  -2400 60  % 左外
     1500  -1153 40  % 左内
     1500   1153 40  % 右内
@@ -21,7 +22,7 @@ db.motor.setup_position = [
     ]*1e-3;
 
 % 电机安装角度（从机体绕ZYX到电机轴向，电机轴向为X轴）
-db.motor.setup_angle =[
+motor.setup_angle =[
     0 -6 0 % 左外
     0 -6 0 % 左内
     0 -6 0 % 右内
@@ -29,7 +30,7 @@ db.motor.setup_angle =[
     ]*pi/180;
 
 % 电机旋转方向（拉力轴向X，右手定则）
-db.motor.rotation = [
+motor.rotation = [
     +1  % 左外
     -1  % 左内
     +1  % 右内
@@ -43,9 +44,9 @@ tmp = [
     0.0000  0.1074  0.1679  0.2993  0.3252  0.3419  0.3658  0.3881  0.4251  0.4519  0.4860  0.5204  0.5471  0.5738  0.5998  0.6293  0.6676  0.6895  0.7112  0.7331  0.7573  0.7690  0.7847  0.8021  0.8199  0.8355  0.8430  0.8528  0.8600  0.8583  0.8245  0.6556
     ];
 
-db.motor.lambda = tmp(1, :);
-db.motor.Ct     = tmp(2, :);
-db.motor.eta    = tmp(3, :);
+motor.lambda = tmp(1, :);
+motor.Ct     = tmp(2, :);
+motor.eta    = tmp(3, :);
 
 % 螺旋桨反向旋转
 tmp = [
@@ -54,8 +55,6 @@ tmp = [
     0.0000 -0.2153 -0.2380 -0.2631 -0.3027 -0.3354 -0.3930 -0.4532 -0.4763 -0.5287 -0.5523 -0.8723 -1.0466 -1.2240 -1.4460 -1.7711
     ];
 
-db.motor.lambda_rev = tmp(1, end:-1:1);
-db.motor.Ct_rev     = tmp(2, end:-1:1);
-db.motor.eta_rev    = tmp(3, end:-1:1);
-
-clear tmp
+motor.lambda_rev = tmp(1, end:-1:1);
+motor.Ct_rev     = tmp(2, end:-1:1);
+motor.eta_rev    = tmp(3, end:-1:1);

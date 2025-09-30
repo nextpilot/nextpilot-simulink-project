@@ -3,7 +3,7 @@ function mass = init_weight()
 mass.ref_center = [0 0 0.05];
 
 % 空机重量kg
-mass.empty_weight = 38;
+mass.empty_mass = 38;
 mass.empty_cog  = [0 0 0.05];
 
 % 质量惯性矩

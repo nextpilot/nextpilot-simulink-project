@@ -1,6 +1,6 @@
 function vtol50kg_airframe_init()
 
-oldpath = pwd;
+nosave_oldpath = pwd;
 cd(fileparts(mfilename('fullpath')));
 
 %% 发动机
@@ -22,20 +22,20 @@ payload = init_payload;
 
 %% 初始状态
 % 初始速度，体轴系，单位m/s
-tmp.u_v_w=[0 0 0];
+nosave_init.u_v_w = [0 0 0];
 % 初始角速率，体轴系，单位rad/s
-tmp.p_q_r = [0 0 0];
+nosave_init.p_q_r = [0 0 0];
 % 初始姿态角，但是rad
-tmp.phi_theta_psi = [0 0 0];
+nosave_init.phi_theta_psi = [0 0 0];
 % 初始经纬高，单位deg，m
-tmp.lat_lon_alt = [30 120 0];
-init = Simulink.Parameter(tmp);
-clear tmp
+nosave_init.lat_lon_alt = [30 120 0];
+init = Simulink.Parameter(nosave_init);
 
 %% 物理环境
 environ.wind.const_wind = [0 0 0];
 environ.terrain.hground = 0;
 
-save vtol50kg_airframe_data.mat
+% ^(?!nosave_).+ 表示不以 nosave_ 开头的变量
+save vtol50kg_airframe_data.mat -regexp ^(?!nosave_).+
 
-cd(oldpath);
+cd(nosave_oldpath);

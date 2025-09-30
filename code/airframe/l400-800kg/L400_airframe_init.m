@@ -1,6 +1,6 @@
 function L400_airframe_init()
 
-oldpath = pwd;
+nosave_oldpath = pwd;
 cd(fileparts(mfilename('fullpath')));
 
 %% 气动数据库
@@ -23,7 +23,7 @@ db.landgear = init_landgear;
 
 %% 初始状态
 % 初始速度，体轴系，单位m/s
-init.u_v_w=[0 0 0];
+init.u_v_w = [0 0 0];
 % 初始角速率，体轴系，单位rad/s
 init.p_q_r = [0 0 0];
 % 初始姿态角，但是rad
@@ -37,4 +37,4 @@ environ.terrain.hground = 0;
 
 save L400_airframe_data.mat db init environ
 
-cd(oldpath);
+cd(nosave_oldpath);

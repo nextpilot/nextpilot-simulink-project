@@ -1,6 +1,6 @@
 function commander_init()
 
-oldpath = pwd;
+nosave_oldpath = pwd;
 cd(fileparts(mfilename('fullpath')));
 
 %% 状态转移标志
@@ -40,6 +40,6 @@ CONST_DEFINE('POSVEL_PROBATION_MAX', uint64(100000000));
 CONST_DEFINE('POSVEL_PROBATION_MIN', uint64(1000000));
 
 
-save commander_data.mat
+save commander_data.mat -regexp ^(?!nosave_).+
 
-cd(oldpath);
+cd(nosave_oldpath);

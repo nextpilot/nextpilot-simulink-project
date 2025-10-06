@@ -1,0 +1,1 @@
+function dm_unlock(type)

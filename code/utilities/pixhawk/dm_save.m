@@ -1,5 +1,7 @@
 function dm_save()
 
-global dataman
+global g_dataman_info
 
-save dataman.mat dataman
+matfile = fullfile(fileparts(mfilename('fullpath')), 'dataman.mat');
+
+save(matfile, 'g_dataman_info');

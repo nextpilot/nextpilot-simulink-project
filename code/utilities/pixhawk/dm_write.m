@@ -6,9 +6,9 @@ arguments
     item   (1, 2) struct {} = struct
 end
 
-global dataman
+global g_dataman_info
 
-if isempty(dataman)
+if isempty(g_dataman_info)
     dm_init();
 end
 
@@ -32,46 +32,46 @@ end
 switch type
     case DM_KEY_SAFE_POINTS
         if index == 0
-            dataman.safepoint.entry = item;
+            g_dataman_info.safepoint.entry = item;
             bytes = 1;
         elseif index <= DM_ITEM_MAX && index > 0
-            dataman.safepoint.itmes(index) = item;
+            g_dataman_info.safepoint.itmes(index) = item;
             bytes = 1;
         end
     case DM_KEY_FENCE_POINTS
         if index == 0
-            dataman.geofense.entry = item;
+            g_dataman_info.geofense.entry = item;
             bytes = 1;
         elseif index <= DM_ITEM_MAX && index > 0
-            dataman.geofense.itmes(index) = item;
+            g_dataman_info.geofense.itmes(index) = item;
             bytes = 1;
         end
     case DM_KEY_WAYPOINTS_OFFBOARD_0
         if index == 0
-            dataman.waypoints_offboard_0.entry = item;
+            g_dataman_info.waypoints_offboard_0.entry = item;
             bytes = 1;
         elseif index <= DM_ITEM_MAX && index > 0
-            dataman.waypoints_offboard_0.itmes(index) = item;
+            g_dataman_info.waypoints_offboard_0.itmes(index) = item;
             bytes = 1;
         end
     case DM_KEY_WAYPOINTS_OFFBOARD_1
         if index == 0
-            dataman.waypoints_offboard_1.entry = item;
+            g_dataman_info.waypoints_offboard_1.entry = item;
             bytes = 1;
         elseif index <= DM_ITEM_MAX && index > 0
-            dataman.waypoints_offboard_1.itmes(index) = item;
+            g_dataman_info.waypoints_offboard_1.itmes(index) = item;
             bytes = 1;
         end
     case DM_KEY_WAYPOINTS_ONBOARD
         if index == 0
-            dataman.waypoints_onboard.entry = item;
+            g_dataman_info.waypoints_onboard.entry = item;
             bytes = 1;
         elseif index <= DM_ITEM_MAX && index > 0
-            dataman.waypoints_onboard.itmes(index) = item;
+            g_dataman_info.waypoints_onboard.itmes(index) = item;
             bytes = 1;
         end
     case DM_KEY_MISSION_STATE
-        dataman.mission_state = item;
+        g_dataman_info.mission_state = item;
         bytes = 1;
     otherwise
 end

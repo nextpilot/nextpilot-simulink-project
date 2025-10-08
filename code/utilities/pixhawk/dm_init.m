@@ -10,26 +10,28 @@ function flag = dm_init()
 % DM_KEY_NUM_KEYS = 7;			% Total number of item types defined
 
 
-global dataman
-persistent g_dm_inited
+global     g_dataman_info
+persistent g_dataman_inited
 
-if isempty(g_dm_inited)
-    if exist('dataman.mat', 'file')
-        if ismember('dataman', who('-file', 'dataman.mat', 'dataman'))
-            load dataman.mat dataman
+matfile = fullfile(fileparts(mfilename('fullpath')), 'dataman.mat');
+
+if isempty(g_dataman_inited)
+    if exist(matfile, 'file')
+        if ismember('g_dataman_info', who('-file', matfile, 'g_dataman_info'))
+            load(matfile, 'g_dataman_info');
         else
-            dataman = create_dataman_file();
+            g_dataman_info = create_dataman_file(matfile);
         end
     else
-        dataman = create_dataman_file();
+        g_dataman_info = create_dataman_file(matfile);
     end
-    g_dm_inited = true;
+    g_dataman_inited = true;
 
 end
 
-flag = g_dm_inited;
+flag = g_dataman_inited;
 
-function dataman = create_dataman_file()
+function g_dataman_info = create_dataman_file(matfile)
 mission_item.lat                   = 0;
 mission_item.lon                   = 0;
 mission_item.time_inside           = single(0);
@@ -56,30 +58,30 @@ mission_entry.num_items      = uint16(0);
 mission_entry.update_counter = uint16(0);
 
 % 航线执行状态
-dataman.mission_state.timestamp   = uint64(0);
-dataman.mission_state.dataman_id  = uint8(0);
-dataman.mission_state.count       = uint16(0);
-dataman.mission_state.current_seq = int32(0);
+g_dataman_info.mission_state.timestamp   = uint64(0);
+g_dataman_info.mission_state.dataman_id  = uint8(0);
+g_dataman_info.mission_state.count       = uint16(0);
+g_dataman_info.mission_state.current_seq = int32(0);
 
 % 上传航线0
-dataman.waypoints_offboard_0.entry = mission_entry;
-dataman.waypoints_offboard_0.items(1:1000) = mission_item;
+g_dataman_info.waypoints_offboard_0.entry = mission_entry;
+g_dataman_info.waypoints_offboard_0.items(1:1000) = mission_item;
 % 上传航线1
-dataman.waypoints_offboard_1.entry = mission_entry;
-dataman.waypoints_offboard_1.items(1:1000) = mission_item;
+g_dataman_info.waypoints_offboard_1.entry = mission_entry;
+g_dataman_info.waypoints_offboard_1.items(1:1000) = mission_item;
 % 机载生成航线
-dataman.waypoints_onboard.entry = mission_entry;
-dataman.waypoints_onboard.items(1:1000) = mission_item;
+g_dataman_info.waypoints_onboard.entry = mission_entry;
+g_dataman_info.waypoints_onboard.items(1:1000) = mission_item;
 
 % 地理围栏
-dataman.geofense.entry = mission_entry;
-dataman.geofense.items(1:1000) = struct(...
+g_dataman_info.geofense.entry = mission_entry;
+g_dataman_info.geofense.items(1:1000) = struct(...
     'lat',                 0, 'lon',                  0, 'alt', single(0), ...
     'vertex_count', uint16(0), 'circle_radius', single(0), ...
     'nav_cmd',      uint16(0), 'frame',         uint8(0));
 
 % 安全着陆点
-dataman.safepoint.entry       = mission_entry;
-dataman.safepoint.items(1:1000) = struct('lat', 0, 'lon', 0, 'alt', single(0), 'frame', uint8(0));
+g_dataman_info.safepoint.entry       = mission_entry;
+g_dataman_info.safepoint.items(1:1000) = struct('lat', 0, 'lon', 0, 'alt', single(0), 'frame', uint8(0));
 
-save dataman.mat  dataman
+save(matfile, 'g_dataman_info');

@@ -1,13 +1,9 @@
-function varargout = PARAM_DEFINE(name, value, varargin)
-% PARAM_DEFINE(value, type, min, max, unit, desc)
-p = inputParser;
-% p.addOptional('type', class(value), @(x)isempty(x, {}))
+function PARAM_DEFINE(name, value, varargin)
 
-obj = Simulink.Parameter(value);
+[~, sobj] = nextpilot_get_sldd();
 
-
-if nargout == 0
-    assignin('caller', name, obj);
-else
-    varargout{1} = obj;
+if ~isempty(sobj)
+    param = Simulink.Parameter(value);
+    set(param, varargin{:});
+    assignin(sobj, name, param);
 end

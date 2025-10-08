@@ -1,23 +1,17 @@
 function PARAM_DEFINE_INT32(name, value)
 
-% persistent sobj
-%
-% if isempty(sobj)
-%     file = 'nextpilot_datadict.sldd';
-%     if exist(file,'file')
-%         dobj=Simulink.data.dictionary.open(file);
-%     else
-%         dobj=Simulink.data.dictionary.create(file);
-%     end
-%     sobj = getSection(dobj,'Design Data');
-% end
-%
-% assignin(sobj, name, value);
+[~, sobj] = nextpilot_get_sldd();
 
-if value > intmax('int32')
-    param = Simulink.Parameter(uint32(value));
-else
-    param = Simulink.Parameter(int32(value));
+if ~isempty(sobj)
+    if value > intmax('int32')
+        param = Simulink.Parameter(uint32(value));
+    else
+        param = Simulink.Parameter(int32(value));
+    end
+    param.CoderInfo.StorageClass = 'Custom';
+    param.CoderInfo.CustomStorageClass = 'Struct';
+    param.CoderInfo.Identifier = '';
+    param.CoderInfo.Alignment = -1;
+    % param.CoderInfo.CustomAttributes.StructName = '';
+    assignin(sobj, name, param);
 end
-
-assignin('caller', name, param);

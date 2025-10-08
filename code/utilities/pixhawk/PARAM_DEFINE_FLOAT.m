@@ -1,21 +1,13 @@
 function PARAM_DEFINE_FLOAT(name, value)
 
-% persistent sobj
-% 
-% if isempty(sobj)
-%     file = 'nextpilot_datadict.sldd';
-%     if exist(file,'file')
-%         dobj=Simulink.data.dictionary.open(file);
-%     else
-%         dobj=Simulink.data.dictionary.create(file);
-%     end
-%     sobj = getSection(dobj,'Design Data');
-% end
-% 
-% assignin(sobj, name, value);
+[~, sobj] = nextpilot_get_sldd();
 
-param = Simulink.Parameter(single(value));
-param.CoderInfo.StorageClass = 'Custom';
-param.CoderInfo.CustomStorageClass = 'Const';
-
-assignin('caller', name, param);
+if ~isempty(sobj)
+    param = Simulink.Parameter(single(value));
+    param.CoderInfo.StorageClass = 'Custom';
+    param.CoderInfo.CustomStorageClass = 'Struct';
+    param.CoderInfo.Identifier = '';
+    param.CoderInfo.Alignment = -1;
+    % param.CoderInfo.CustomAttributes.StructName = '';
+    assignin(sobj, name, param);
+end

@@ -1,0 +1,39 @@
+function commander_model_init()
+
+%% 状态转移标志
+% TRANSITION_DENIED = int8(-1);
+% TRANSITION_NOT_CHANGED = int8(0);
+% TRANSITION_CHANGED = int8(1);
+
+%% 加锁解锁原因
+% ARM_DISARM_REASON_TRANSITION_TO_STANDBY = uint8(0);
+% ARM_DISARM_REASON_RC_STICK = uint8(1);
+% ARM_DISARM_REASON_RC_SWITCH = uint8(2);
+% ARM_DISARM_REASON_COMMAND_INTERNAL = uint8(3);
+% ARM_DISARM_REASON_COMMAND_EXTERNAL = uint8(4);
+% ARM_DISARM_REASON_MISSION_START = uint8(5);
+% ARM_DISARM_REASON_SAFETY_BUTTON = uint8(6);
+% ARM_DISARM_REASON_AUTO_DISARM_LAND = uint8(7);
+% ARM_DISARM_REASON_AUTO_DISARM_PREFLIGHT = uint8(8);
+% ARM_DISARM_REASON_KILL_SWITCH = uint8(9);
+% ARM_DISARM_REASON_LOCKDOWN = uint8(10);
+% ARM_DISARM_REASON_FAILURE_DETECTOR = uint8(11);
+% ARM_DISARM_REASON_SHUTDOWN = uint8(12);
+% ARM_DISARM_REASON_UNIT_TEST = uint8(13);
+
+
+%% 数据链丢失动作
+LINK_LOSS_ACTIONS_DISABLED    = nextpilot.Constant(uint8(0));
+LINK_LOSS_ACTIONS_AUTO_LOITER = nextpilot.Constant(uint8(1));	% Hold mode
+LINK_LOSS_ACTIONS_AUTO_RTL    = nextpilot.Constant(uint8(2));		% Return mode
+LINK_LOSS_ACTIONS_AUTO_LAND   = nextpilot.Constant(uint8(3));    % Land mode
+LINK_LOSS_ACTIONS_TERMINATE   = nextpilot.Constant(uint8(5));	% Terminate flight (set actuator outputs to failsafe values); and stop controllers)
+LINK_LOSS_ACTIONS_LOCKDOWN    = nextpilot.Constant(uint8(6));		% Lock actuators (set actuator outputs to disarmed values)
+
+COMMANDER_MONITORING_INTERVAL  = nextpilot.Constant(uint64(10000));
+HOTPLUG_SENS_TIMEOUT           = nextpilot.Constant(uint64(8000000));
+INAIR_RESTART_HOLDOFF_INTERVAL = nextpilot.Constant(uint64(500000));
+POSVEL_PROBATION_MAX           = nextpilot.Constant(uint64(100000000));
+POSVEL_PROBATION_MIN           = nextpilot.Constant(uint64(1000000));
+
+save commander_data.mat -regexp ^(?!nosave_).+

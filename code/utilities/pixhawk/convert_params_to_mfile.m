@@ -10,16 +10,19 @@ if nargin == 0
 end
 
 if nargin < 2
-    [~, filename] =fileparts(cfile);
+    [~, filename] = fileparts(cfile);
     mfile =  [filename,'.m'];
-
 end
 
 
 cfid = fopen(cfile);
 mfid = fopen(mfile, 'w');
 
-flag = 1;
+[~, mfilename] = fileparts(mfile);
+fprintf(mfid, 'function %s_init()\n', mfilename);
+fprintf(mfid, 'PARAM_DEFINE_START();\n');
+
+phase = 1;
 
 while ~feof(cfid)
     tline = strtrim(fgetl(cfid));
@@ -27,16 +30,16 @@ while ~feof(cfid)
         continue;
     end
 
-    switch flag
+    switch phase
         case 1
             if strcmpi(tline, '/**')
                 fprintf(mfid, '%%{\n');
-                flag = 2;
+                phase = 2;
             end
         case 2
             if strcmpi(tline, '*/')
                 fprintf(mfid, '%%}\n');
-                flag = 3;
+                phase = 3;
             else
                 fprintf(mfid, '%s\n', tline);
             end
@@ -45,10 +48,12 @@ while ~feof(cfid)
             if startsWith(tline, 'PARAM_DEFINE_')
                 tline = regexprep(tline, {'f', '\(\s*', '\s*,'}, {'', '\(''', ''',',});
                 fprintf(mfid, '%s\n\n', tline);
-                flag = 1;
+                phase = 1;
             end
     end
 end
+
+fprintf(mfid, 'PARAM_DEFINE_FINISH();\n');
 
 fclose(cfid);
 fclose(mfid);

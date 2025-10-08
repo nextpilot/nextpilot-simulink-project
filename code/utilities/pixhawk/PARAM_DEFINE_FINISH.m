@@ -1,5 +1,6 @@
 function PARAM_DEFINE_FINISH()
-[~, dobj] = nextpilot_get_sldd();
+
+[~, dobj] = nextpilot_project_dictionary();
 
 if ~isempty(sobj)
     dobj.saveChanges();

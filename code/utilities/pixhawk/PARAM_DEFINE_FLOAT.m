@@ -1,6 +1,6 @@
 function PARAM_DEFINE_FLOAT(name, value)
 
-[~, sobj] = nextpilot_get_sldd();
+[~, sobj] = nextpilot_project_dictionary();
 
 if ~isempty(sobj)
     param = Simulink.Parameter(single(value));

@@ -1,4 +1,4 @@
-function [dobj, sobj] = nextpilot_get_sldd()
+function [dobj, sobj] = nextpilot_project_dictionary()
 
 persistent g_dict_obj g_sect_obj
 

@@ -1,6 +1,6 @@
 function PARAM_DEFINE_INT32(name, value)
 
-[~, sobj] = nextpilot_get_sldd();
+[~, sobj] = nextpilot_project_dictionary();
 
 if ~isempty(sobj)
     if value > intmax('int32')

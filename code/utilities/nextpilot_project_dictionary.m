@@ -3,7 +3,7 @@ function [dobj, sobj] = nextpilot_project_dictionary()
 persistent g_dict_obj g_sect_obj
 
 if isempty(g_sect_obj) || isempty(g_dict_obj)
-    file = 'nextpilot_data_dictionary.sldd';
+    file = 'nextpilot_datadict.sldd';
 
     if exist(file,'file')
         g_dict_obj = Simulink.data.dictionary.open(file);

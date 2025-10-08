@@ -1,4 +1,4 @@
-function cs = sdofs_gencode_config()
+function cs = nextpilot_project_gencode_config()
 % 在 15-Sep-2025 11:25:21 上生成的配置集的 MATLAB 函数
 % MATLAB 版本: 24.2.0.2712019 (R2024b)
 

@@ -1,4 +1,4 @@
-function L400_project_gencode
+function nextpilot_project_gencode
 
 model = 'flightControlSystem';
 

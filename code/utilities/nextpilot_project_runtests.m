@@ -1,4 +1,4 @@
-function results = L400_project_runtests()
+function results = nextpilot_project_runtests()
 
 prj = slproject.getCurrentProject;
 lst = {};

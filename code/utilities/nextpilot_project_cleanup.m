@@ -1,1 +1,1 @@
-function L400_project_cleanup()
+function nextpilot_project_cleanup()

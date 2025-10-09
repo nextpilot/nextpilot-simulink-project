@@ -10,5 +10,3 @@ commander_model_init();
 commander_param_init();
 
 cd(nosave_oldpath);
-
-

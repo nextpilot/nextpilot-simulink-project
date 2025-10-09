@@ -1,8 +1,8 @@
 function PARAM_DEFINE_FINISH()
 
-[~, dobj] = nextpilot_project_dictionary();
+[dobj] = nextpilot_project_dictionary();
 
-if ~isempty(sobj)
+if ~isempty(dobj)
     dobj.saveChanges();
     dobj.close();
 end

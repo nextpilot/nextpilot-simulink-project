@@ -32,8 +32,8 @@ nosave_init.lat_lon_alt = [30 120 0];
 init = Simulink.Parameter(nosave_init);
 
 %% 物理环境
-environ.wind.const_wind = Simulink.Parameter([0 0 0]);
-environ.terrain.hground = Simulink.Parameter(0);
+environ.wind.const_wind = [0 0 0];
+environ.terrain.hground = 0;
 
 % ^(?!nosave_).+ 表示不以 nosave_ 开头的变量
 save vtol50kg_airframe_data.mat -regexp ^(?!nosave_).+

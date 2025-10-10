@@ -19,8 +19,8 @@ cfid = fopen(cfile);
 mfid = fopen(mfile, 'w');
 
 [~, mfilename] = fileparts(mfile);
-fprintf(mfid, 'function %s_init()\n', mfilename);
-fprintf(mfid, 'PARAM_DEFINE_START();\n');
+fprintf(mfid, 'function %s()\n', mfilename);
+fprintf(mfid, '\n%% open dictionary for params\nPARAM_DEFINE_START();\n\n');
 
 phase = 1;
 
@@ -53,7 +53,7 @@ while ~feof(cfid)
     end
 end
 
-fprintf(mfid, 'PARAM_DEFINE_FINISH();\n');
+fprintf(mfid, '%% save params to dictionary\nPARAM_DEFINE_FINISH();\n');
 
 fclose(cfid);
 fclose(mfid);

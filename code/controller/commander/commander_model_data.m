@@ -1,4 +1,4 @@
-function commander_model_init()
+function commander_model_data()
 
 %% 状态转移标志
 % TRANSITION_DENIED = int8(-1);

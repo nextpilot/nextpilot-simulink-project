@@ -1,4 +1,4 @@
-function commander_param_init()
+function commander_consts()
 
 PARAM_DEFINE_START();
 

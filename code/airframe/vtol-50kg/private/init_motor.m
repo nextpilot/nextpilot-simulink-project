@@ -6,25 +6,25 @@ L_y = 0.74*2;% 旋翼侧向距离
 
 % 电机安装位置
 motor.setup_position = [
-    L_x  L_y 0    % 左前
-    L_x -L_y 0  % 右前
-    -L_x -L_y 0
-    -L_x  L_y 0];
+    L_x  L_y 0      % 右前
+    -L_x -L_y 0     % 左后
+    L_x -L_y 0      % 左前
+    -L_x  L_y 0];   % 右后
 
 % 电机安装角度(ZYX)
-motor.setup_angle =[
-    0 0 -5
-    0 0 -5
-    0 0 5
-    0 0 5
+motor.setup_angle =[%内倾
+    0 0 -5      % 右前
+    0 0 5       % 左后
+    0 0 5       % 左前
+    0 0 -5      % 右后
     ]*pi/180;
 
 % 电机旋转方向，拉力轴向右手定则（俯视，逆时针为正，顺时针为负）
 motor.rotation = [
     +1  % 顺时针
-    -1
-    -1
     +1
+    -1
+    -1
     ];
 
 mc_perf = [

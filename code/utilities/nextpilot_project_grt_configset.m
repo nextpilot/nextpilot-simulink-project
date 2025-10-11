@@ -1,4 +1,4 @@
-function cs = nextpilot_project_gencode_config()
+function cs = nextpilot_project_grt_configset()
 % 在 15-Sep-2025 11:25:21 上生成的配置集的 MATLAB 函数
 % MATLAB 版本: 24.2.0.2712019 (R2024b)
 
@@ -12,7 +12,7 @@ end
 % 字符编码: UTF-8
 
 % 不要更改以下命令的顺序。参数之间存在依存关系。
-cs.set_param('Name', 'SDOFS_GENCODE'); % 名称
+cs.set_param('Name', 'grt_gencode'); % 名称
 cs.set_param('Description', ''); % 描述
 
 % Original configuration set target is grt.tlc

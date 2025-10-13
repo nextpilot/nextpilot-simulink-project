@@ -3,40 +3,48 @@ function vtol50kg_airframe_init()
 nosave_oldpath = pwd;
 cd(fileparts(mfilename('fullpath')));
 
-%% 发动机
+%% 读取数据
+% 发动机
 engine = init_engine;
-
-%% 旋翼动力
-motor = init_motor;
-
-%% 气动数据
+engine_thrust_scale = create_global_parameter(1.0);
+% 旋翼动力
+motor  = init_motor;
+motor_thrust_scale = create_global_parameter(0.85);    
+% 气动数据
 aerody = init_aerody;
-
-%% 质量数据
-mass = init_weight;
-
-%% 载荷数据
+aerody_drag_scale = create_global_parameter(1/0.6);
+% 质量数据
+mass   = init_weight;
+% 载荷数据
 payload = init_payload;
 
 
 %% 物理环境
-wind.windspeed = [0 0 0];
-terrain.hground = 0.0;
+% 风速，北东地坐标系，单位m/s
+windspeed = create_global_parameter([0 0 0]);
+% 地形高度，单位m
+hground   = create_global_parameter(0.0);
 
 
 %% 初始状态
 % 初始速度，体轴系，单位m/s
-nosave_init.u_v_w = [0 0 0];
+init_u_v_w = create_global_parameter([0 0 0]);
 % 初始角速率，体轴系，单位rad/s
-nosave_init.p_q_r = [0 0 0];
+init_p_q_r = create_global_parameter([0 0 0]);
 % 初始姿态角，但是rad
-nosave_init.phi_theta_psi = [0 0 0];
+init_phi_theta_psi = create_global_parameter([0 0 0]);
 % 初始经纬高，单位deg，m
-nosave_init.lat_lon_alt = [30 120 terrain.hground];
-init = Simulink.Parameter(nosave_init);
+init_lat_lon_alt = create_global_parameter([30 120 hground.Value]);
 
-
+%% 保存数据
 % ^(?!nosave_).+ 表示不以 nosave_ 开头的变量
 save vtol50kg_airframe_data.mat -regexp ^(?!nosave_).+
 
 cd(nosave_oldpath);
+
+
+function param = create_global_parameter(value)
+
+param = Simulink.Parameter(value);
+param.CoderInfo.StorageClass = 'Custom';
+% param.CoderInfo.CustomStorageClass = 'GetSet';

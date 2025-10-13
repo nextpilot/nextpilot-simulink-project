@@ -38,6 +38,13 @@ if exist(packfile, "file")
     delete(packfile)
 end
 
+% try
+%     cm = coder.mapping.api.get(model);
+% catch
+%     cm= coder.mapping.utils.create(model);
+% end
+
+
 % 生成代码
 slbuild(model, 'GenerateCodeOnly', true)
 

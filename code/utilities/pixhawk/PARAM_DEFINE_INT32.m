@@ -1,17 +1,55 @@
-function PARAM_DEFINE_INT32(name, value)
+function varargout = PARAM_DEFINE_INT32(varargin)
+%
+% param = PARAM_DEFINE_INT32(name, value), save param to sldd
+% param = PARAM_DEFINE_INT32(value), return param to caller
+%
 
-[~, sobj] = nextpilot_project_dictionary();
-
-if ~isempty(sobj)
-    if value > intmax('int32')
-        param = Simulink.Parameter(uint32(value));
+if nargin == 0
+    name   = "";
+    value  = 0;
+    option = [];
+elseif nargin == 1
+    name   = "";
+    value  = varargin{1};
+    option = [];
+elseif nargin >= 1
+    if ischar(varargin{1}) || isstring(varargin{1})
+        name   = varargin{1};        
+        value  = varargin{2};        
+        option = varargin{3:end};
     else
-        param = Simulink.Parameter(int32(value));
+        name   = "";
+        value  = varargin{1};
+        option = varargin{2:end};
     end
-    param.CoderInfo.StorageClass = 'Custom';
-    param.CoderInfo.CustomStorageClass = 'Struct';
-    param.CoderInfo.Identifier = '';
-    param.CoderInfo.Alignment = -1;
-    % param.CoderInfo.CustomAttributes.StructName = '';
-    assignin(sobj, name, param);
+end
+
+% 创建param
+if value > intmax('int32')
+    param = Simulink.Parameter(uint32(value));
+else
+    param = Simulink.Parameter(int32(value));
+end
+if ~isempty(option)
+    set(param, option);
+end
+
+param.CoderInfo.StorageClass = 'Custom';
+param.CoderInfo.CustomStorageClass = 'Struct';
+param.CoderInfo.Identifier = '';
+param.CoderInfo.Alignment = -1;
+% param.CoderInfo.CustomAttributes.StructName = '';
+
+
+% 保存到sldd
+if strlength (name) > 0
+    [~, sobj] = nextpilot_project_dictionary();
+    if ~isempty(sobj)
+        assignin(sobj, name, param);
+    end
+end
+
+% 返回param
+if nargin >= 1
+    varargout{1} = param;
 end

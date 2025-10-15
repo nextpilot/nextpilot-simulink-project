@@ -23,17 +23,17 @@ function commander_model_data()
 
 
 %% 数据链丢失动作
-LINK_LOSS_ACTIONS_DISABLED    = nextpilot.Constant(uint8(0));
-LINK_LOSS_ACTIONS_AUTO_LOITER = nextpilot.Constant(uint8(1));	% Hold mode
-LINK_LOSS_ACTIONS_AUTO_RTL    = nextpilot.Constant(uint8(2));		% Return mode
-LINK_LOSS_ACTIONS_AUTO_LAND   = nextpilot.Constant(uint8(3));    % Land mode
-LINK_LOSS_ACTIONS_TERMINATE   = nextpilot.Constant(uint8(5));	% Terminate flight (set actuator outputs to failsafe values); and stop controllers)
-LINK_LOSS_ACTIONS_LOCKDOWN    = nextpilot.Constant(uint8(6));		% Lock actuators (set actuator outputs to disarmed values)
+LINK_LOSS_ACTIONS_DISABLED    = PARAM_DEFINE_CONST(uint8(0));
+LINK_LOSS_ACTIONS_AUTO_LOITER = PARAM_DEFINE_CONST(uint8(1));	% Hold mode
+LINK_LOSS_ACTIONS_AUTO_RTL    = PARAM_DEFINE_CONST(uint8(2));		% Return mode
+LINK_LOSS_ACTIONS_AUTO_LAND   = PARAM_DEFINE_CONST(uint8(3));    % Land mode
+LINK_LOSS_ACTIONS_TERMINATE   = PARAM_DEFINE_CONST(uint8(5));	% Terminate flight (set actuator outputs to failsafe values); and stop controllers)
+LINK_LOSS_ACTIONS_LOCKDOWN    = PARAM_DEFINE_CONST(uint8(6));		% Lock actuators (set actuator outputs to disarmed values)
 
-COMMANDER_MONITORING_INTERVAL  = nextpilot.Constant(uint64(10000));
-HOTPLUG_SENS_TIMEOUT           = nextpilot.Constant(uint64(8000000));
-INAIR_RESTART_HOLDOFF_INTERVAL = nextpilot.Constant(uint64(500000));
-POSVEL_PROBATION_MAX           = nextpilot.Constant(uint64(100000000));
-POSVEL_PROBATION_MIN           = nextpilot.Constant(uint64(1000000));
+COMMANDER_MONITORING_INTERVAL  = PARAM_DEFINE_CONST(uint64(10000));
+HOTPLUG_SENS_TIMEOUT           = PARAM_DEFINE_CONST(uint64(8000000));
+INAIR_RESTART_HOLDOFF_INTERVAL = PARAM_DEFINE_CONST(uint64(500000));
+POSVEL_PROBATION_MAX           = PARAM_DEFINE_CONST(uint64(100000000));
+POSVEL_PROBATION_MIN           = PARAM_DEFINE_CONST(uint64(1000000));
 
 save commander_data.mat -regexp ^(?!nosave_).+

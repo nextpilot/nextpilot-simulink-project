@@ -4,7 +4,7 @@ nosave_oldpath = pwd;
 cd(fileparts(mfilename('fullpath')));
 
 % 私有数据（保存到mat）
-commander_model_data();
+commander_private();
 
 % 参数（保存到sldd）
 commander_params();

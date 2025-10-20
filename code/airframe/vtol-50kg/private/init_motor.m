@@ -7,9 +7,9 @@ L_y = 0.725*2;
 
 % 电机安装位置
 motor.setup_position = [
-     L_x  L_y 0     % 右前
+    L_x  L_y 0     % 右前
     -L_x -L_y 0     % 左后
-     L_x -L_y 0     % 左前
+    L_x -L_y 0     % 左前
     -L_x  L_y 0     % 右后
     ] / 2;
 
@@ -22,7 +22,7 @@ motor.setup_angle =[
     ]*pi/180;
 
 % 电机旋转方向，拉力轴向右手定则（俯视，顺时针为正，逆时针为负）
-motor.rotation = [
+motor.setup_rotation = [
     +1  % 右前，顺时针
     +1  % 左后，顺时针
     -1  % 左前，逆时针
@@ -52,13 +52,22 @@ mc_perf = [
     ];
 
 % 拉力曲线
-motor.thrust.delta = mc_perf(:,1);
-motor.thrust.force = mc_perf(:,3)*9.8;
-motor.torque.rpm = mc_perf(:,4);
+motor.throttle = mc_perf(:,1);
+motor.thrust   = mc_perf(:,3)*9.8;
+motor.rpm      = mc_perf(:,4);
+motor.voltage  = mc_perf(:,5);
+motor.current  = mc_perf(:,6);
+motor.torque   = mc_perf(:,7);
 
-% 扭矩曲线
-motor.torque.delta  = mc_perf(:,1);
-motor.torque.moment = mc_perf(:,7);
-motor.torque.voltage = mc_perf(:,5);
-motor.torque.electricity = mc_perf(:,6);
+
+%% 电机拉力和扭矩拉偏
+motor_thrust_scale  = PARAM_DEFINE_TUNE(0.85);
+motor_torque_scale  = PARAM_DEFINE_TUNE(1.0);
+
+%% 保存到mat文件
+if ~exist("vtol50kg_airframe_data.mat", "file")
+    save vtol50kg_airframe_data.mat motor*
+else
+    save vtol50kg_airframe_data.mat motor* -append
+end
 

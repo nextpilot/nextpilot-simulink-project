@@ -14,8 +14,6 @@ engine.propeller_dia = 22;
 % 桨叶数目
 engine.blade_count = 2;
 
-engine.init_fuel = 7; %初始燃油重量
-
 % 发动机拉力曲线
 eng_perf1 = [
     %节气门开度   转速rpm		推力（N）
@@ -55,7 +53,22 @@ eng_perf2 = [
     100/100	3.84	4.99	7350	0.383
     ];
 engine.torque.delta  = eng_perf2(:,1);
-engine.torque.power = eng_perf2(:,2);
+engine.torque.power  = eng_perf2(:,2);
 engine.torque.moment = eng_perf2(:,3);
-engine.torque.rpm = eng_perf2(:,4);
+engine.torque.rpm    = eng_perf2(:,4);
 engine.torque.fuel_cons_rate = eng_perf2(:,5);
+
+
+%% 可调参数和拉偏参数
+%初始燃油重量
+engine_init_fuel    = PARAM_DEFINE_TUNE(7);
+engine_thrust_scale = PARAM_DEFINE_TUNE(1.0);
+engine_torque_scale = PARAM_DEFINE_TUNE(1.0);
+
+
+%% 保存到mat文件
+if ~exist("vtol50kg_airframe_data.mat", "file")
+    save vtol50kg_airframe_data.mat engine*
+else
+    save vtol50kg_airframe_data.mat engine* -append
+end

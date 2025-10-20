@@ -29,3 +29,14 @@ mass.empty_inertia = [
     -0.0067   11.203   -0.0013
     -0.818   -0.0013    34.126
     ];
+
+%% 可调参数和拉偏参数
+mass_cog_offset  = PARAM_DEFINE_TUNE(0);
+mass_mass_offset = PARAM_DEFINE_TUNE(0);
+
+%% 保存到mat文件
+if ~exist("vtol50kg_airframe_data.mat", "file")
+    save vtol50kg_airframe_data.mat mass*
+else
+    save vtol50kg_airframe_data.mat mass* -append
+end

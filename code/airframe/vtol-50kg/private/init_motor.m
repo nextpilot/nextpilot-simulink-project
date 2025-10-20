@@ -7,10 +7,10 @@ L_y = 0.725*2;
 
 % 电机安装位置
 motor.setup_position = [
-    L_x  L_y 0     % 右前
-    -L_x -L_y 0     % 左后
-    L_x -L_y 0     % 左前
-    -L_x  L_y 0     % 右后
+    +L_x  +L_y 0     % 右前
+    -L_x  -L_y 0     % 左后
+    +L_x  -L_y 0     % 左前
+    -L_x  +L_y 0     % 右后
     ] / 2;
 
 % 电机安装角度(ZYX)，电机内倾5°

@@ -5,7 +5,7 @@ function engine = init_engine()
 engine.setup_position  = [0,0,0];
 % 发动机安装角（ZYX顺序），psi=0，theta=1，phi=0
 engine.setup_angle = [0, 3, 0]*pi/180;
-% 发动机旋转方向
+% 发动机旋转方向（从尾部看，顺时针为正）
 engine.setup_rotation  = +1;
 
 

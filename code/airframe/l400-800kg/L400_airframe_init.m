@@ -23,18 +23,18 @@ db.landgear = init_landgear;
 
 %% 初始状态
 % 初始速度，体轴系，单位m/s
-init.u_v_w = [0 0 0];
+init_u_v_w = [0 0 0];
 % 初始角速率，体轴系，单位rad/s
-init.p_q_r = [0 0 0];
+init_p_q_r = [0 0 0];
 % 初始姿态角，但是rad
-init.phi_theta_psi = [0 0 0];
+init_phi_theta_psi = [0 0 0];
 % 初始经纬高，单位deg，m
-init.lat_lon_alt = [30 120 0];
+init_lat_lon_alt = [30 120 0];
 
 %% 物理环境
-environ.wind.const_wind = [0 0 0];
-environ.terrain.hground = 0;
+environ_windspeed = [0 0 0];
+environ_hground = 0;
 
-save L400_airframe_data.mat db init environ
+save L400_airframe_data.mat db init* environ*
 
 cd(nosave_oldpath);

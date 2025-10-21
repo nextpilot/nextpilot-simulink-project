@@ -62,7 +62,7 @@ engine.torque.fuel_cons_rate = eng_perf2(:,5);
 %% 可调参数和拉偏参数
 %初始燃油重量
 engine_init_fuel    = PARAM_DEFINE_TUNE(7);
-engine_thrust_scale = PARAM_DEFINE_TUNE(1.0);
+engine_thrust_scale = PARAM_DEFINE_TUNE(0.8);
 engine_torque_scale = PARAM_DEFINE_TUNE(1.0);
 
 

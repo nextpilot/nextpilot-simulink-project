@@ -61,7 +61,7 @@ motor.torque   = mc_perf(:,7);
 
 
 %% 电机拉力和扭矩拉偏
-motor_thrust_scale  = PARAM_DEFINE_TUNE(0.85);
+motor_thrust_scale  = PARAM_DEFINE_TUNE(0.8);
 motor_torque_scale  = PARAM_DEFINE_TUNE(1.0);
 
 %% 保存到mat文件

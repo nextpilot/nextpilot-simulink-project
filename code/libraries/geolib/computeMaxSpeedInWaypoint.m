@@ -1,7 +1,5 @@
-function y = computeMaxSpeedInWaypoint(alpha,accel,d)
+function max_speed_in_turn = computeMaxSpeedInWaypoint(alpha, accel, d)
 
-tan_alpha = tan(alpha / 2);
-y = sqrt(accel * d * tan_alpha);
-
-end
+tan_alpha = tan(alpha / 2.0);
+max_speed_in_turn = sqrt(accel * d * tan_alpha);
 

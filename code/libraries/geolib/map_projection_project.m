@@ -1,6 +1,12 @@
 function [x, y] = map_projection_project(ref, lat, lon)
 
-earth_radius = single(6371000);
+if (~map_projection_initialized(ref))
+    x = NaN;
+    y = NaN;
+    return ;
+end
+
+CONSTANTS_RADIUS_OF_EARTH = single(6371000);
 
 % lat,lon are expected to be in correct format: -> 47.1234567 and not 471234567
 
@@ -28,8 +34,8 @@ else
     k = 1;
 end
 
-x = k * (ref.cos_lat * sin_lat - ref.sin_lat * cos_lat * cos_d_lon) * earth_radius;
-y = k * cos_lat * sin(lon_rad - ref.lon_rad) * earth_radius;
+x = k * (ref.cos_lat * sin_lat - ref.sin_lat * cos_lat * cos_d_lon) * CONSTANTS_RADIUS_OF_EARTH;
+y = k * cos_lat * sin(lon_rad - ref.lon_rad) * CONSTANTS_RADIUS_OF_EARTH;
 
 end
 

@@ -1,13 +1,10 @@
-function result = constrain(input, min_val, max_val)
+function y = constrain(x, min, max)
 
-if (input < min_val)
-    result = single(min_val);
-elseif (input > max_val)
-    result = single(max_val);
+if (x < min)
+    y = single(min);
+elseif (x > max)
+    y = single(max);
 else
-    result = single(input);
+    y = single(x);
 end
-
-end
-
 

@@ -1,4 +1,4 @@
-function [v_n,v_e] = get_vector_to_next_waypoint(lat_now,lon_now,lat_next,lon_next)
+function [v_n, v_e] = get_vector_to_next_waypoint(lat_now,lon_now,lat_next,lon_next)
 
 CONSTANTS_RADIUS_OF_EARTH = 6371000;
 

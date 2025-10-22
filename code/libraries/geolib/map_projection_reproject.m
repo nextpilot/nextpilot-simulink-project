@@ -1,4 +1,10 @@
-function [result, lat, lon] = map_projection_reproject(ref, x, y)
+function [lat, lon] = map_projection_reproject(ref, x, y)
+
+if (~map_projection_initialized(ref))
+    lat = NaN;
+    lon = NaN;
+    return;
+end
 
 CONSTANTS_RADIUS_OF_EARTH = 6371000;
 
@@ -17,9 +23,3 @@ else
     lat = rad2deg(ref.lat_rad);
     lon = rad2deg(ref.lon_rad);
 end
-
-result = false;
-
-end
-
-

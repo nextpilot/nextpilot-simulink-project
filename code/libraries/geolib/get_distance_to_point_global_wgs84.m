@@ -1,6 +1,7 @@
 function [dist, dist_xy, dist_z] = get_distance_to_point_global_wgs84(lat_now, lon_now, alt_now, lat_next, lon_next, alt_next)
 
 CONSTANTS_RADIUS_OF_EARTH = 6371000;
+
 current_x_rad = deg2rad(lat_next);
 current_y_rad = deg2rad(lon_next);
 x_rad = deg2rad(lat_now);

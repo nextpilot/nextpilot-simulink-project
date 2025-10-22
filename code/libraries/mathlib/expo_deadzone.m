@@ -1,7 +1,4 @@
-function result = expo_deadzone(value,e,dz)
+function y = expo_deadzone(x, e, dz)
 
-result = expo(deaddzone(value, dz), e);
-
-end
-
+y = expo(deadzone(x, dz), e);
 

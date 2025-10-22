@@ -1,3 +1,4 @@
+function y = deadzone(x, dz)
 % Deadzone function being linear and continuous outside of the deadzone
 % 1                ------
 %                /
@@ -11,17 +12,12 @@
 % 		0.5 - deadzone is half of the span [-0.5,0.5]
 % 		0.99 - almost entire span is deadzone
 
-function result = deaddzone(value,dz)
-
-x = constrain(value, -1.0, 1.0);
+xc = constrain(x, -1.0, 1.0);
 dzc = constrain(dz, 0, 0.99);
 
 % Rescale the input such that we get a piecewise linear function that will be continuous with applied deadzone
-out = (x - sign(x) * dzc) / (1 - dzc);
+out = (xc - sign(xc) * dzc) / (1 - dzc);
 
 % apply the deadzone (values zero around the middle)
-result = out * (abs(x) > dzc);
-
-end
-
+y = out * (abs(xc) > dzc);
 

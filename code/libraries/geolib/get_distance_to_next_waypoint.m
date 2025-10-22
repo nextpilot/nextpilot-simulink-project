@@ -1,6 +1,7 @@
 function distance = get_distance_to_next_waypoint(lat_now, lon_now, lat_next, lon_next)
 
 CONSTANTS_RADIUS_OF_EARTH = 6371000;
+
 lat_now_rad = deg2rad(lat_now);
 lat_next_rad = deg2rad(lat_next);
 

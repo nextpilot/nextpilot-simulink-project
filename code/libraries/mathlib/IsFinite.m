@@ -5,7 +5,3 @@ if isfinite(u)
 else
     y = single(param);
 end
-
-end
-
-

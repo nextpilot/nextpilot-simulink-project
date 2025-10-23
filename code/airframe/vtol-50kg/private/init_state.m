@@ -1,4 +1,8 @@
 function init_state()
+%% 舰船的状态
+boat_takeoff_land  = PARAM_DEFINE_TUNE(true);
+boat_vn_ve_vd      = PARAM_DEFINE_TUNE([0 0 0]);
+boat_phi_theta_psi = PARAM_DEFINE_TUNE([0 0 0]);
 
 %% 物理环境
 % 风速，北东地坐标系，单位m/s

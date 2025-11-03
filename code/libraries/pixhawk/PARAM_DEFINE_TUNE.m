@@ -28,8 +28,10 @@ end
 
 % 创建param
 param = Simulink.Parameter(value);
-param.CoderInfo.StorageClass = 'Custom';
-% param.CoderInfo.CustomStorageClass = 'GetSet';
+param.CoderInfo.StorageClass = 'Model default';
+% param.CoderInfo.StorageClass = 'Custom';
+% param.CoderInfo.CustomStorageClass = 'Struct';
+% param.CoderInfo.CustomAttributes.StructName = '__global_param__';
 if ~isempty(option)
     set(param, option);
 end

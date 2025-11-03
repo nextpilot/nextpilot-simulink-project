@@ -22,21 +22,21 @@ old_cs = getActiveConfigSet(model);
 
 % 创建代码生成配置
 all_cs = getConfigSets(model);
-if ~ismember('grt_gencode', all_cs)
+if ~ismember('ert_generic', all_cs)
     new_cs = nextpilot_project_gencode_config;
     attachConfigSet(model, new_cs);
 end
 
 % 激活代码生成配置
-setActiveConfigSet(model, 'grt_gencode');
+setActiveConfigSet(model, 'ert_generic');
 
 % 移除老的代码和临时文件
-if exist(genfolder, "dir")
-    rmdir(genfolder, 's')
-end
-if exist(packfile, "file")
-    delete(packfile)
-end
+% if exist(genfolder, "dir")
+%     rmdir(genfolder, 's')
+% end
+% if exist(packfile, "file")
+%     delete(packfile)
+% end
 
 % try
 %     cm = coder.mapping.api.get(model);

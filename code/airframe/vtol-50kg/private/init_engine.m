@@ -61,14 +61,14 @@ engine.torque.fuel_cons_rate = eng_perf2(:,5);
 
 %% 可调参数和拉偏参数
 %初始燃油重量
-engine_init_fuel    = PARAM_DEFINE_TUNE(7);
-engine_thrust_scale = PARAM_DEFINE_TUNE(0.8);
-engine_torque_scale = PARAM_DEFINE_TUNE(1.0);
+ENGINE_INIT_FUEL    = PARAM_DEFINE_TUNE(7);
+ENGINE_THRUST_SCALE = PARAM_DEFINE_TUNE(0.8);
+ENGINE_TORQUE_SCALE = PARAM_DEFINE_TUNE(1.0);
 
 
 %% 保存到mat文件
 if ~exist("vtol50kg_airframe_data.mat", "file")
     save vtol50kg_airframe_data.mat engine*
 else
-    save vtol50kg_airframe_data.mat engine* -append
+    save vtol50kg_airframe_data.mat engine ENGINE* -append
 end

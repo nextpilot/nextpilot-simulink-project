@@ -1,29 +1,29 @@
 function init_state()
 %% 舰船的状态
 % 是否舰船上起降
-boat_takeoff_land  = PARAM_DEFINE_TUNE(true);
+IS_BOAT_TAKEOFF_LAND  = PARAM_DEFINE_TUNE(true);
 % 船的姿态角，单位rad
-boat_phi_theta_psi = PARAM_DEFINE_TUNE([0 0 0]);
+BOAT_PHI_THETA_PSI = PARAM_DEFINE_TUNE([0 0 0]);
 % 船的前右下速度，单位m/s
-boat_u_v_w      = PARAM_DEFINE_TUNE([0 0 0]);
+BOAT_U_V_W      = PARAM_DEFINE_TUNE([0 0 0]);
 
 %% 物理环境
 % 风速，北东地坐标系，单位m/s
-environ_windspeed = PARAM_DEFINE_TUNE([0 0 0]);
+ENVIRON_WINDSPEED = PARAM_DEFINE_TUNE([0 0 0]);
 
 % 地形高度，单位m
-environ_hground   = PARAM_DEFINE_TUNE(0.0);
+ENVIRON_HGROUND   = PARAM_DEFINE_TUNE(0.0);
 
 
 %% 初始状态
 % 初始速度，体轴系，单位m/s
-init_u_v_w = PARAM_DEFINE_TUNE([0 0 0]);
+INIT_U_V_W = PARAM_DEFINE_TUNE([0 0 0]);
 % 初始角速率，体轴系，单位rad/s
-init_p_q_r = PARAM_DEFINE_TUNE([0 0 0]);
+INIT_P_Q_R = PARAM_DEFINE_TUNE([0 0 0]);
 % 初始姿态角，单位rad
-init_phi_theta_psi = PARAM_DEFINE_TUNE([0 0 0]);
+INIT_PHI_THETA_PSI = PARAM_DEFINE_TUNE([0 0 0]);
 % 初始经纬高，单位deg，m
-init_lat_lon_alt = PARAM_DEFINE_TUNE([30 120 environ_hground.Value]);
+INIT_LAT_LON_ALT = PARAM_DEFINE_TUNE([30 120 ENVIRON_HGROUND.Value]);
 
 %% 保存到mat文件
 if ~exist("vtol50kg_airframe_data.mat", "file")

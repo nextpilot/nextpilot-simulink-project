@@ -61,13 +61,13 @@ motor.torque   = mc_perf(:,7);
 
 
 %% 电机拉力和扭矩拉偏
-motor_thrust_scale  = PARAM_DEFINE_TUNE(0.8);
-motor_torque_scale  = PARAM_DEFINE_TUNE(1.0);
+MOTOR_THRUST_SCALE  = PARAM_DEFINE_TUNE(0.8);
+MOTOR_TORQUE_SCALE  = PARAM_DEFINE_TUNE(1.0);
 
 %% 保存到mat文件
 if ~exist("vtol50kg_airframe_data.mat", "file")
     save vtol50kg_airframe_data.mat motor*
 else
-    save vtol50kg_airframe_data.mat motor* -append
+    save vtol50kg_airframe_data.mat motor MOTOR* -append
 end
 

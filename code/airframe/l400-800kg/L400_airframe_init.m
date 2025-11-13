@@ -21,20 +21,21 @@ db.battery = init_battery;
 %% 起落架数据
 db.landgear = init_landgear;
 
+%% 物理环境
+ENVIRON_WINDSPEED = PARAM_DEFINE_TUNE([0 0 0]);
+ENVIRON_HGROUND = PARAM_DEFINE_TUNE(0);
+
 %% 初始状态
 % 初始速度，体轴系，单位m/s
-init_u_v_w = [0 0 0];
+INIT_U_V_W = PARAM_DEFINE_TUNE([0 0 0]);
 % 初始角速率，体轴系，单位rad/s
-init_p_q_r = [0 0 0];
+INIT_P_Q_R = PARAM_DEFINE_TUNE([0 0 0]);
 % 初始姿态角，但是rad
-init_phi_theta_psi = [0 0 0];
+INIT_PHI_THETA_PSI = PARAM_DEFINE_TUNE([0 0 0]);
 % 初始经纬高，单位deg，m
-init_lat_lon_alt = [30 120 0];
+INIT_LAT_LON_ALT = PARAM_DEFINE_TUNE([30 120 ENVIRON_HGROUND.Value]);
 
-%% 物理环境
-environ_windspeed = [0 0 0];
-environ_hground = 0;
 
-save L400_airframe_data.mat db init* environ*
+save L400_airframe_data.mat db INIT* ENVIRON*
 
 cd(nosave_oldpath);

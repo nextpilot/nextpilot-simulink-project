@@ -17,12 +17,12 @@ aerody.ref_length = [aerody.ref_chord, aerody.ref_chord, aerody.ref_chord];
 
 
 %% 气动数据拉偏
-aerody_force_scale  = PARAM_DEFINE_TUNE([2, 2, 1]);     % 气流系
-aerody_moment_scale = PARAM_DEFINE_TUNE([1, 1, 0.5]);     % 体轴系
+AERODY_FORCE_SCALE  = PARAM_DEFINE_TUNE([2, 2, 1]);     % 气流系
+AERODY_MOMENT_SCALE = PARAM_DEFINE_TUNE([1, 1, 0.5]);     % 体轴系
 
 %% 保存到mat文件
 if ~exist("vtol50kg_airframe_data.mat", "file")
     save vtol50kg_airframe_data.mat aerody*
 else
-    save vtol50kg_airframe_data.mat aerody* -append
+    save vtol50kg_airframe_data.mat aerody AERODY* -append
 end

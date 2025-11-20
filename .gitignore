@@ -30,3 +30,10 @@ codegen
 
 # Word cache files
 ~$*
+/code/airframe/vtol-50kg/cubemx/Core
+/code/airframe/vtol-50kg/cubemx/Drivers
+/code/airframe/vtol-50kg/cubemx/Template
+/code/airframe/vtol-50kg/cubemx/.mxproject
+/code/airframe/vtol-50kg/cubemx/script
+/code/airframe/vtol-50kg/cubemx/vtol50kg_airframe.ioctmp
+/code/airframe/vtol-50kg/cubemx/vtol50kg_airframe.ioctmprsv

@@ -2,7 +2,7 @@ function [aerody, dds, hingle] = init_aerody()
 %% 气动库
 aerody = read_aerody_database('database/L400气动力数据库.V2a.20250721.txt');
 
-% 气动力系数参考面积为11.1m2，纵向参考长度1m，横航向参考长度11.5m，力矩参考点（2.1876m，0m，0.1386m）。
+% 气动力系数参考面积为11.1m2，纵向参考长度bA=1m，横航向参考长度L=11.5m，力矩参考点（2.1876m，0m，0.1386m）。
 aerody.Sref = 11.1;
 aerody.Cref = 1;
 aerody.Bref = 11.5;

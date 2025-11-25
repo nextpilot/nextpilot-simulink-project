@@ -1,9 +1,14 @@
 function sl_customization(cm)
+% 使用 sl_refresh_customizations 函数让当前文件立即生效
+
+% Change the order of libraries in the Simulink Library Browser. 
+cm.LibraryBrowserCustomizer.applyOrder({'Nextpilot Aerospace Blockset',-2});
+
 % cm = sl_customization_manager;
 % cm.showWidgetIdAsToolTip=true;
 
-cm.addCustomMenuFcn('Simulink:MenuBar', @item_addto_menubar);
-cm.addCustomMenuFcn('Stateflow:MenuBar', @item_addto_menubar);
+% cm.addCustomMenuFcn('Simulink:MenuBar', @item_addto_menubar);
+% cm.addCustomMenuFcn('Stateflow:MenuBar', @item_addto_menubar);
 
 % 菜单有以下三种
 % sl_container_schema

@@ -14,19 +14,18 @@ landgear.kdamping = 1e3;
 
 
 % 左起落架，构型系
-landgear.left_pos = [2.2317-0.51,-0.9,0.045-0.9];
+landgear.left_pos = [1864.7,-900,-1114.8]*1e-3;
 % 左起落架，轮胎半径
 landgear.left_rad = 0.426/2;
 
 
 % 右起落架，构型系
-landgear.right_pos = [2.2317-0.51,0.9,0.045-0.9];
+landgear.right_pos = [1864.7,+900,-1114.8]*1e-3;
 % 右起落架，轮胎半径
 landgear.right_rad = 0.426/2;
 
 
 % 后起落架，构型系
-% landgear.rear_pos = [2.2317+3.75,0,0.045-0.943];
-landgear.rear_pos = [2.2317+3.75,0,0.045-0.9];
+landgear.rear_pos = [6118,0,-288]*1e-3;
 % 后起落架，轮胎半径
 landgear.rear_rad = 0.426/2;

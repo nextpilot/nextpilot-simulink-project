@@ -30,7 +30,7 @@ motor.setup_angle =[
     ]*pi/180;
 
 % 电机旋转方向（拉力轴向X，右手定则）
-motor.rotation = [
+motor.setup_rotation = [
     +1  % 左外
     -1  % 左内
     +1  % 右内

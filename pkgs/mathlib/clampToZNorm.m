@@ -4,9 +4,9 @@ y = u;
 
 znorm = abs(u(3));
 if znorm > eps
-    scale_factor = max_z_norm / znorm;
+    scale_factor = cast(max_z_norm / znorm, 'like', u);
 else
-    scale_factor = single(1);
+    scale_factor = cast(1, 'like', u);
 end
 
 if scale_factor < 1

@@ -11,12 +11,12 @@ function y = gradual(x, x_low, x_high, y_low, y_high)
  */
 %}
 if x < x_low
-    y = single(y_low);
+    y = cast(y_low, 'like', x);
 elseif x > x_high
-    y = single(y_high);
+    y = cast(y_high, 'like', x);
 else
     a = (y_high - y_low) / (x_high - x_low);
     b = y_low - a * x_low;
-    y = single(a) * single(x) + single(b);
+    y = cast(a * x + b, 'like', x);
 end
 

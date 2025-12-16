@@ -1,7 +1,7 @@
 function y = IsFinite(u, param)
 
 if isfinite(u)
-    y = single(u);
+    y = u;
 else
-    y = single(param);
+    y = cast(param, 'like', u);
 end

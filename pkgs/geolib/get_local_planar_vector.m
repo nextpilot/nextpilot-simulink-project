@@ -19,7 +19,7 @@ x_angle = deg2rad(target(1) - origin(1));
 y_angle = deg2rad(target(2) - origin(2));
 x_origin_cos = cos(deg2rad(origin(1)));
 
-vector = [single(x_angle * CONSTANTS_RADIUS_OF_EARTH), single(y_angle * x_origin_cos * CONSTANTS_RADIUS_OF_EARTH)];
+vector = single([x_angle * CONSTANTS_RADIUS_OF_EARTH, y_angle * x_origin_cos * CONSTANTS_RADIUS_OF_EARTH]);
 
 end
 

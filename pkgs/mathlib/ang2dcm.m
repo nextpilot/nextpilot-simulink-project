@@ -1,4 +1,4 @@
-function r = ang2dcm(varargin)
+function R = ang2dcm(varargin)
 % ang2dcm 根据绕XYZ轴旋转角创建方向余弦矩阵
 %
 % dcm = ang2dcm(r1,r2,r3,...,'xyz...')
@@ -17,24 +17,24 @@ function r = ang2dcm(varargin)
 %  syms yaw pitch roll real
 %  dcm = ang2dcm(yaw, pitch, roll, 'zyx')
 %
-% See also ang2quat
+% See also ANGLE2DCM, EUL2ROTM
 
 if nargin < 2
     error('ang2dcm:inputerror', '至少包含两个输入参数！');
 else
     tmp = cellfun(@(x)x(:), varargin(1:end-1), 'UniformOutput', false);
     ang = cat(1, tmp{:});
-    act = varargin{end};
+    seq = varargin{end};
 end
 
-if length(ang) ~= length(act)
+if length(ang) ~= length(seq)
     warning('ang2dcm:lengtherror', '输入角度和转轴长度不一致！');
 end
-n = min(length(ang), length(act));
+n = min(length(ang), length(seq));
 
-r = eye(3);
+R = eye(3);
 for i = 1:n
-    r = sig2dcm(ang(i), act(i)) * r;
+    R = sig2dcm(ang(i), seq(i)) * R;
 end
 
 function r = sig2dcm(t, k)

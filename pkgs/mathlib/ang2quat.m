@@ -1,4 +1,4 @@
-function q= ang2quat(varargin)
+function q = ang2quat(varargin)
 % ang2quat 根据绕XYZ轴旋转角创建方向余弦矩阵
 %
 % dcm = ang2quat(r1,r2,r3,...,'xyz...')
@@ -17,25 +17,25 @@ function q= ang2quat(varargin)
 %  syms yaw pitch roll real
 %  dcm = ang2quat(yaw, pitch, roll, 'zyx')
 %
-% See also ang2quat
+% See also ANGLE2QUAT, EUL2QUAT
 
 if nargin < 2
     error('ang2quat:inputerror', '至少包含两个输入参数！');
 else
     tmp = cellfun(@(x)x(:), varargin(1:end-1), 'UniformOutput', false);
     ang = cat(1, tmp{:});
-    act = varargin{end};
+    seq = varargin{end};
 end
 
-if length(ang) ~= length(act)
+if length(ang) ~= length(seq)
     warning('ang2quat:lengtherror', '输入角度和转轴长度不一致！');
 end
 
-n = min(length(ang), length(act));
+n = min(length(ang), length(seq));
 
 q = [1 0 0 0];
 for i = 1 : n
-    r = sig2quat(ang(i), act(i));
+    r = sig2quat(ang(i), seq(i));
     q = quatmult(q, r);    
 end
 

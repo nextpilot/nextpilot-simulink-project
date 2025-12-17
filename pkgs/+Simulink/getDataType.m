@@ -1,4 +1,4 @@
-function [sltype, sldims] = get_data_type(oldtype)
+function [sltype, sldims] = getDataType(oldtype)
 
 if isnumeric(oldtype)
     oldtype = class(oldtype);

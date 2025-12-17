@@ -1,4 +1,4 @@
-function blk = get_selected_block(sys,varargin)
+function blk = getSelectedBlock(sys,varargin)
 if nargin==0
     sys = gcs;
 end

@@ -1,1 +1,0 @@
-function object_to_struct()

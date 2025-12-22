@@ -1,4 +1,4 @@
-function [wsvar, dgvar, hprm, hmsk] = get_mask_param(blk)
+function [wsvar, dgvar, hprm, hmsk] = getMaskParam(blk)
 
 if nargin == 0
     blk = gcb;

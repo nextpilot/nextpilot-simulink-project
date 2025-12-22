@@ -1,4 +1,4 @@
-function sig = get_selected_signal(sys, varargin)
+function sig = getSelectedSignal(sys, varargin)
 if nargin==0
     sys = gcs;
 end

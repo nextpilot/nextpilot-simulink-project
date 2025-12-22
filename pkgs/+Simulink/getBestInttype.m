@@ -1,4 +1,4 @@
-function dtype = get_best_inttype(min, max)
+function dtype = getBestInttype(min, max)
 
 if min < 0
     if min < intmin('int32') || max > intmax('int32')

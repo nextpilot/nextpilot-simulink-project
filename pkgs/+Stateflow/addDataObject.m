@@ -1,4 +1,4 @@
-function add_data_object(fullpath, properties)
+function addDataObject(fullpath, properties)
 
 % data，可以是cell，struct或者c代码
 % name,scope,type,size

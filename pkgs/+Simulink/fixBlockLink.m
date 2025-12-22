@@ -1,4 +1,4 @@
-function fix_block_link(varargin)
+function fixBlockLink(varargin)
 % fixblocklink()，查找当前model中unsolve link，并尝试根据SourceType进行修复
 % fixblocklink(sys)，查找sys模型中unsolve link，并尝试根据SourceType进行修复
 % fixblocklink(oldpath，newpath)，查找当前模型包含oldpath的unsolve link，然后用newpath进行修复

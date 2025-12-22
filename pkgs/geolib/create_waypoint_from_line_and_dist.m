@@ -11,7 +11,7 @@
 
 function [lat_target, lon_target] = create_waypoint_from_line_and_dist(lat_A, lon_A, lat_B, lon_B, dist)
 
-if (abs(dist) < single(eps))
+if (abs(dist) < eps)
     lat_target = lat_A;
     lon_target = lon_A;
 else

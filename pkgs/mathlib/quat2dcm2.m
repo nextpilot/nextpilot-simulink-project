@@ -1,40 +1,27 @@
-% Direction cosine matrix class
-% The rotation between two coordinate frames is
-% described by this class.
-
-% This sets the transformation matrix from frame 2 to frame 1 where the rotation
-% from frame 1 to frame 2 is described by a 3-2-1 intrinsic Tait-Bryan rotation sequatuence.
-
-% dcm: body --> ned
-
 function dcm = quat2dcm(quat)
+%
+% 注意：机器人工具箱quat2rotm函数返回的dcm，跟本函数返回的dcm是转置关系
+%
+% see also QUAT2DCM, QUAT2ROTM
 
-dcm = single(zeros(3, 3));
+% 归一化
+norm_quat = norm(quat);
+if norm_quat > eps
+    q = quat ./ norm(quat);
+else
+    q = cast([1 0 0 0], 'like', quat);
+end
 
-a = quat(1);
-b = quat(2);
-c = quat(3);
-d = quat(4);
-aa = a * a;
-ab = a * b;
-ac = a * c;
-ad = a * d;
-bb = b * b;
-bc = b * c;
-bd = b * d;
-cc = c * c;
-cd = c * d;
-dd = d * d;
+s = q(1);
+x = q(2);
+y = q(3);
+z = q(4);
 
-dcm(1, 1) = single(aa + bb - cc - dd);
-dcm(1, 2) = single(2 * (bc - ad));
-dcm(1, 3) = single(2 * (ac + bd));
-dcm(2, 1) = single(2 * (bc + ad));
-dcm(2, 2) = single(aa - bb + cc - dd);
-dcm(2, 3) = single(2 * (cd - ab));
-dcm(3, 1) = single(2 * (bd - ac));
-dcm(3, 2) = single(2 * (ab + cd));
-dcm(3, 3) = single(aa - bb - cc + dd);
+dcm = [
+    1 - 2*(y.^2 + z.^2),   2*(x.*y - s.*z),       2*(x.*z + s.*y),
+    2*(x.*y + s.*z),       1 - 2*(x.^2 + z.^2),   2*(y.*z - s.*x),
+    2*(x.*z - s.*y),       2*(y.*z + s.*x),       1 - 2*(x.^2 + y.^2)
+    ]';
 
 end
 

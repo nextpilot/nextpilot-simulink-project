@@ -1,10 +1,10 @@
 function y = constrain(x, min, max)
 
 if (x < min)
-    y = single(min);
+    y = cast(min, 'like', x);
 elseif (x > max)
-    y = single(max);
+    y = cat(max, 'like', x);
 else
-    y = single(x);
+    y = x;
 end
 

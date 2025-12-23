@@ -1,7 +1,7 @@
 function mixer_data_init()
 
-MIXER_TYPE_NULL = 0;
-MIXER_TYPE_MC = 1;
+MIXER_TYPE_NULL   = 0;
+MIXER_TYPE_MC     = 1;
 IMXER_TYPE_SIMPLE = 2;
 
 %% 多旋翼
@@ -50,5 +50,7 @@ fw_mixers(2).control_scale =[
     0 6 1 1 0 -1 1
     0 6 1 1 0 -1 1
     ];
+
+%% 保存到文件
 save mixer_data.mat
 
